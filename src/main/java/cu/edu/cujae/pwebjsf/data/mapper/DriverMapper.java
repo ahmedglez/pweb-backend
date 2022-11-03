@@ -17,7 +17,8 @@ public interface DriverMapper {
       @org.mapstruct.Mapping(source = "name", target = "name"),
       @org.mapstruct.Mapping(source = "lastName", target = "last_name"),
       @org.mapstruct.Mapping(source = "address", target = "address"),
-      @org.mapstruct.Mapping(source = "category.code", target = "cod_category"),
+      @org.mapstruct.Mapping(source = "category.code", target = "categoryCode"),
+      @org.mapstruct.Mapping(source = "category", target = "category"),
     }
   )
   Driver toDriver(DriverDto driverDto);
@@ -25,7 +26,7 @@ public interface DriverMapper {
   List<Driver> toDriverList(List<DriverDto> driverDtos);
 
   @InheritInverseConfiguration
-  @Mapping(target = "category", ignore = true)
+  @Mapping(target = "category", ignore = false)
   DriverDto toDriverDto(Driver driver);
 
   List<DriverDto> toDriverDtoList(List<Driver> drivers);

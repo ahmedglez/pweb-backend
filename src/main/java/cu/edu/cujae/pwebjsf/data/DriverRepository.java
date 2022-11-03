@@ -22,7 +22,6 @@ public class DriverRepository implements DriverDtoRepository {
 
   @Override
   public List<DriverDto> getAll() {
-    System.out.println("DriverRepository.getAll");
     List<Driver> drivers = (List<Driver>) driverCrudRepository.findAll();
     return mapper.toDriverDtoList(drivers);
   }

@@ -15,6 +15,7 @@ public class DriverDto {
     String name,
     String lastName,
     String address,
+    
     DriversCategoriesDto category
   ) {
     this.code = code;
