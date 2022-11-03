@@ -10,4 +10,6 @@ public interface DriverCrudRepository extends CrudRepository<Driver, Integer> {
   List<Driver> findByCategoryCode(int codeCategory);
 
   Driver findById(int driverId);
+
+  Driver findByCI(String CI);
 }

@@ -31,12 +31,20 @@ public class DriverRepository {
     return Optional.ofNullable(driverDtos);
   }
 
-  public Optional<DriverDto> getDriver(int driverId) {
-    return Optional.empty();
+  public Optional<DriverDto> getbyID(int driverId) {
+    Driver driver = driverCrudRepository.findById(driverId);
+    DriverDto driverDto = mapper.toDriverDto(driver);
+    return Optional.ofNullable(driverDto);
   }
 
   public DriverDto save(DriverDto driver) {
     return null;
+  }
+
+  public Optional<DriverDto> getbyCI(String CI) {
+    Driver driver = driverCrudRepository.findByCI(CI);
+    DriverDto driverDto = mapper.toDriverDto(driver);
+    return Optional.ofNullable(driverDto);
   }
 
   public void delete(int driverId) {}

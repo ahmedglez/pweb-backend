@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,12 +21,12 @@ public class DriverController {
   @Autowired
   private DriverServices driverSevices;
 
-  @GetMapping("/all")
+  @GetMapping("/all") //Get All Drivers
   public ResponseEntity<List<DriverDto>> getAll() {
     return new ResponseEntity<>(driverSevices.getAll(), HttpStatus.OK);
   }
 
-  @GetMapping("/getByCategory/{codeCategory}")
+  @GetMapping("/getByCategory/{codeCategory}") // Get Drivers by Category
   public ResponseEntity<List<DriverDto>> getByCategory(
     @PathVariable("codeCategory") int codeCategory
   ) {
@@ -36,8 +37,17 @@ public class DriverController {
     );
   }
 
-  @GetMapping("/test")
-  public ResponseEntity test() {
-    return ResponseEntity.ok("test");
+  @GetMapping(value = "/{id}") // Get Driver by ID
+  public ResponseEntity<DriverDto> getDriver(@PathVariable("id") int id) {
+    DriverDto driver = driverSevices.getDriver(id);
+    return new ResponseEntity<>(driver, HttpStatus.OK);
+  }
+
+  @GetMapping(value = "ci/{ci}") // Get Driver by CI
+  public ResponseEntity<DriverDto> getDriverByCI(
+    @PathVariable("ci") String ci
+  ) {
+    DriverDto driver = driverSevices.getDriverByCI(ci);
+    return new ResponseEntity<>(driver, HttpStatus.OK);
   }
 }

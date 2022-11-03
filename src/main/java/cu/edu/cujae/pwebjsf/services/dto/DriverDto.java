@@ -3,7 +3,7 @@ package cu.edu.cujae.pwebjsf.services.dto;
 public class DriverDto {
 
   private int code;
-  private String id;
+  private String CI;
   private String name;
   private String lastName;
   private String address;
@@ -11,27 +11,26 @@ public class DriverDto {
 
   public DriverDto(
     int code,
-    String id,
+    String CI,
     String name,
     String lastName,
     String address,
-    
     DriversCategoriesDto category
   ) {
     this.code = code;
-    this.id = id;
+    this.CI = CI;
     this.name = name;
     this.lastName = lastName;
     this.address = address;
     this.category = category;
   }
 
-  public String getId() {
-    return id;
+  public String getCI() {
+    return CI;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setCI(String CI) {
+    this.CI = CI;
   }
 
   public String getName() {

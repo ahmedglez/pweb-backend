@@ -2,7 +2,6 @@ package cu.edu.cujae.pwebjsf.services;
 
 import cu.edu.cujae.pwebjsf.services.dto.DriverDto;
 import cu.edu.cujae.pwebjsf.services.repository.DriverRepository;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +18,13 @@ public class DriverServices {
 
   public List<DriverDto> getByCategory(int codeCategory) {
     return driverRepository.getByCategory(codeCategory).get();
+  }
+
+  public DriverDto getDriver(int driverId) {
+    return driverRepository.getbyID(driverId).get();
+  }
+
+  public DriverDto getDriverByCI(String CI) {
+    return driverRepository.getbyCI(CI).get();
   }
 }
