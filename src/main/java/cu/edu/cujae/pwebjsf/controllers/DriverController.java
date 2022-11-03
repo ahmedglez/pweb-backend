@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,10 @@ public class DriverController {
   }
 
   @GetMapping("/getByCategory/{codeCategory}")
-  public ResponseEntity<List<DriverDto>> getByCategory(int codeCategory) {
+  public ResponseEntity<List<DriverDto>> getByCategory(
+    @PathVariable("codeCategory") int codeCategory
+  ) {
+    System.out.println("codeCategory: " + codeCategory);
     return new ResponseEntity<>(
       driverSevices.getByCategory(codeCategory),
       HttpStatus.OK
