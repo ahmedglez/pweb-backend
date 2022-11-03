@@ -24,11 +24,16 @@ public class DriverController {
     return new ResponseEntity<>(driverSevices.getAll(), HttpStatus.OK);
   }
 
+  @GetMapping("/getByCategory/{codeCategory}")
+  public ResponseEntity<List<DriverDto>> getByCategory(int codeCategory) {
+    return new ResponseEntity<>(
+      driverSevices.getByCategory(codeCategory),
+      HttpStatus.OK
+    );
+  }
 
   @GetMapping("/test")
   public ResponseEntity test() {
     return ResponseEntity.ok("test");
   }
-
-  
 }
