@@ -11,5 +11,5 @@ public interface DriverCrudRepository extends CrudRepository<Driver, Integer> {
 
   Driver findById(int driverId);
 
-  Driver findByCI(String CI);
+  Driver findByCi(String ci);
 }

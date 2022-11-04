@@ -47,7 +47,7 @@ public class DriverController {
   public ResponseEntity<DriverDto> getDriverByCI(
     @PathVariable("ci") String ci
   ) {
-    DriverDto driver = driverSevices.getDriverByCI(ci);
+    DriverDto driver = driverSevices.getDriverByCi(ci);
     return new ResponseEntity<>(driver, HttpStatus.OK);
   }
 }

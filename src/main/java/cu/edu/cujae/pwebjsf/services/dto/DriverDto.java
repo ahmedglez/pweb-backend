@@ -3,39 +3,20 @@ package cu.edu.cujae.pwebjsf.services.dto;
 public class DriverDto {
 
   private int code;
-  private String CI;
+  private String ci;
   private String name;
   private String lastName;
   private String address;
   private DriversCategoriesDto category;
+  
 
-  public DriverDto(
-    int code,
-    String CI,
-    String name,
-    String lastName,
-    String address,
-    DriversCategoriesDto category
-  ) {
-    this.code = code;
-    this.CI = CI;
-    this.name = name;
-    this.lastName = lastName;
-    this.address = address;
-    this.category = category;
-  }
 
-  public String getCI() {
-    return CI;
-  }
-
-  public void setCI(String CI) {
-    this.CI = CI;
-  }
-
+  
   public String getName() {
     return name;
   }
+
+  
 
   public void setName(String name) {
     this.name = name;
@@ -71,5 +52,17 @@ public class DriverDto {
 
   public void setCode(int code) {
     this.code = code;
+  }
+
+
+
+  public String getCi() {
+    return ci;
+  }
+
+
+
+  public void setCi(String ci) {
+    this.ci = ci;
   }
 }

@@ -41,8 +41,8 @@ public class DriverRepository {
     return null;
   }
 
-  public Optional<DriverDto> getbyCI(String CI) {
-    Driver driver = driverCrudRepository.findByCI(CI);
+  public Optional<DriverDto> getbyCi(String ci) {
+    Driver driver = driverCrudRepository.findByCi(ci);
     DriverDto driverDto = mapper.toDriverDto(driver);
     return Optional.ofNullable(driverDto);
   }

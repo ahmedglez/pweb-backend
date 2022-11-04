@@ -24,7 +24,7 @@ public class DriverServices {
     return driverRepository.getbyID(driverId).get();
   }
 
-  public DriverDto getDriverByCI(String CI) {
-    return driverRepository.getbyCI(CI).get();
+  public DriverDto getDriverByCi(String ci) {
+    return driverRepository.getbyCi(ci).get();
   }
 }

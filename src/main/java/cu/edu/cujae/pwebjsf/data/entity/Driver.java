@@ -20,7 +20,7 @@ public class Driver {
   private int codeDriver;
 
   @Column(name = "id")
-  private String CI;
+  private String ci;
 
   @Column(name = "name")
   private String name;
@@ -34,8 +34,8 @@ public class Driver {
   @Column(name = "cod_category")
   private int categoryCode;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "cod_category", referencedColumnName = "cod_category", insertable = false, updatable = false)
+  @OneToOne
+  @JoinColumn(name = "cod_category", insertable = false, updatable = false)
   private Driver_Category category;
 
   /* GETTERS AND SETTERS */
@@ -48,14 +48,7 @@ public class Driver {
     this.codeDriver = codeDriver;
   }
 
-  public String getCI() {
-    return this.CI;
-  }
-
-  public void setCI(String CI) {
-    this.CI = CI;
-  }
-
+  
   public String getName() {
     return this.name;
   }
@@ -104,5 +97,15 @@ public class Driver {
 
   public void setCategory(Driver_Category category) {
     this.category = category;
+  }
+
+
+  public String getCi() {
+    return ci;
+  }
+
+
+  public void setCi(String ci) {
+    this.ci = ci;
   }
 }
