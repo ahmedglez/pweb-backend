@@ -31,4 +31,8 @@ public class DriverServices {
   public DriverDto save(DriverDto driver) {
     return driverRepository.save(driver);
   }
+
+  public void delete(int driverId) {
+    driverRepository.delete(driverId);
+  }
 }
