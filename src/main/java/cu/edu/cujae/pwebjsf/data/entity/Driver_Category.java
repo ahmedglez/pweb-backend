@@ -1,10 +1,13 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -13,15 +16,14 @@ import javax.persistence.Table;
 public class Driver_Category {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "cod_category")
   private int code;
 
   @Column(name = "category")
   private String category;
 
-  @OneToOne(mappedBy = "category")
-  private Driver driver;
+  @OneToMany(mappedBy = "category")
+  private List<Driver> drivers;
 
   public int getCode() {
     return code;
@@ -39,15 +41,13 @@ public class Driver_Category {
     this.category = category;
   }
 
-  public Driver getDriver() {
-    return driver;
+  public List<Driver> getDrivers() {
+    return drivers;
   }
 
-  public void setDriver(Driver driver) {
-    this.driver = driver;
+  public void setDrivers(List<Driver> drivers) {
+    this.drivers = drivers;
   }
-
-  /* GETTERS AND SETTERS */
 
   
 }

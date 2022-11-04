@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -16,7 +17,7 @@ public class Driver {
 
   @Id
   @Column(name = "cod_driver")
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int codeDriver;
 
   @Column(name = "id")
@@ -34,7 +35,7 @@ public class Driver {
   @Column(name = "cod_category")
   private int categoryCode;
 
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "cod_category", insertable = false, updatable = false)
   private Driver_Category category;
 
@@ -42,13 +43,11 @@ public class Driver {
   public int getCodeDriver() {
     return this.codeDriver;
   }
-  
 
   public void setCodeDriver(int codeDriver) {
     this.codeDriver = codeDriver;
   }
 
-  
   public String getName() {
     return this.name;
   }
@@ -89,21 +88,17 @@ public class Driver {
     this.categoryCode = categoryCode;
   }
 
-
   public Driver_Category getCategory() {
     return category;
   }
-
 
   public void setCategory(Driver_Category category) {
     this.category = category;
   }
 
-
   public String getCi() {
     return ci;
   }
-
 
   public void setCi(String ci) {
     this.ci = ci;

@@ -27,4 +27,8 @@ public class DriverServices {
   public DriverDto getDriverByCi(String ci) {
     return driverRepository.getbyCi(ci).get();
   }
+
+  public DriverDto save(DriverDto driver) {
+    return driverRepository.save(driver);
+  }
 }

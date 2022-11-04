@@ -38,7 +38,9 @@ public class DriverRepository {
   }
 
   public DriverDto save(DriverDto driver) {
-    return null;
+    Driver driverEntity = mapper.toDriver(driver);
+    Driver driverSaved = driverCrudRepository.save(driverEntity);
+    return mapper.toDriverDto(driverSaved);
   }
 
   public Optional<DriverDto> getbyCi(String ci) {
