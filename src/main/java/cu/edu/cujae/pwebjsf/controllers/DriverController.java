@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,6 +59,16 @@ public class DriverController {
     driverSevices.save(driverDto);
     return new ResponseEntity<>(driverDto, HttpStatus.OK);
   }
+
+  @PutMapping("/update/{id}") // Update Driver
+  public ResponseEntity<DriverDto> update(
+    @PathVariable("id") int id,
+    @RequestBody DriverDto driverDto
+  ) {
+    driverSevices.update(driverDto, id);
+    return new ResponseEntity<>(driverDto, HttpStatus.OK);
+  }
+ 
 
   @DeleteMapping("/delete/{id}") //Delete Driver
   public ResponseEntity<DriverDto> delete(@PathVariable("id") int id) {
