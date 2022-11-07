@@ -4,13 +4,13 @@ public class BrandDto {
 
 	private int cod_brand;
     private String brand;
-    private CarModelDto cod_model;
+    private CarModelDto model;
     
-    public BrandDto(int cod_brand, String brand, CarModelDto cod_model) {
+    public BrandDto(int cod_brand, String brand, CarModelDto model) {
         super();
         this.cod_brand = cod_brand;
         this.brand = brand;
-        this.cod_model = cod_model;
+        this.model = model;
     }
 
 	public int getCod_brand() {
@@ -29,13 +29,15 @@ public class BrandDto {
 		this.brand = brand;
 	}
 
-	public CarModelDto getCod_model() {
-		return cod_model;
+	public CarModelDto getModel() {
+		return model;
 	}
 
-	public void setCod_model(CarModelDto cod_model) {
-		this.cod_model = cod_model;
+	public void setModel(CarModelDto model) {
+		this.model = model;
 	}
+
+	
     
     
 	

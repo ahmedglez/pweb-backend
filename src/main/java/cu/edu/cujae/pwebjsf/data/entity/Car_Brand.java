@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,12 +18,12 @@ public class Car_Brand {
 
 	  @Column(name = "brand")
 	  private String brand;
-	  
-	  @OneToMany
-	  private List<Car_Model> cod_model;
-				
+
 	  @Column(name = "cod_model")
 	  private int modelCode;
+	  
+	  @OneToMany(mappedBy = "brand_2")
+	  private List<Car_Model> models;	  
 	  
 	  @OneToMany(mappedBy = "brand")
 	  private List<Car> cars;
@@ -56,20 +54,21 @@ public class Car_Brand {
 		this.cars = cars;
 	}
 
-	public List<Car_Model> getCod_model() {
-		return cod_model;
-	}
-
-	public void setCod_model(List<Car_Model> cod_model) {
-		this.cod_model = cod_model;
-	}
-
+	
 	public int getModelCode() {
 		return modelCode;
 	}
 
 	public void setModelCode(int modelCode) {
 		this.modelCode = modelCode;
+	}
+
+	public List<Car_Model> getModels() {
+		return models;
+	}
+
+	public void setModels(List<Car_Model> models) {
+		this.models = models;
 	}
 	  
 	

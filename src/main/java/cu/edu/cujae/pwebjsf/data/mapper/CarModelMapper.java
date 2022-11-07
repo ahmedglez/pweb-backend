@@ -8,26 +8,22 @@ import org.mapstruct.Mappings;
 
 import cu.edu.cujae.pwebjsf.data.entity.Car_Model;
 import cu.edu.cujae.pwebjsf.services.dto.CarModelDto;
-import cu.edu.cujae.pwebjsf.services.dto.DriversCategoriesDto;
 
 @Mapper(componentModel = "spring")
 public interface CarModelMapper {
-	
-	@Mappings(
-		    {
-		      @org.mapstruct.Mapping(source = "model_code", target = "codeModel"),
-		      @org.mapstruct.Mapping(source = "model", target = "model"),
-		      @org.mapstruct.Mapping(target = "brands", ignore = true),
-		    }
-		  )
-		  Car_Model toCarModel(CarModelDto carModelDto);
+  @Mappings(
+    {
+      @org.mapstruct.Mapping(source = "model_code", target = "codeModel"),
+      @org.mapstruct.Mapping(source = "model", target = "model"),
+      @org.mapstruct.Mapping(target = "brand", ignore = true),
+    }
+  )
+  Car_Model toCarModel(CarModelDto carModelDto);
 
-		  List<Car_Model> toCarModelList(
-		    List<CarModelDto> carModelDtos
-		  );
+  List<Car_Model> toCarModelList(List<CarModelDto> carModelDtos);
 
-		  @InheritInverseConfiguration
-		  DriversCategoriesDto toCarModelDto(Car_Model carModel);
-	
+  @InheritInverseConfiguration
+  CarModelDto toCarModelDto(Car_Model carModel);
 
+  List<CarModelDto> toCarModelDtoList(List<Car_Model> carModels);
 }

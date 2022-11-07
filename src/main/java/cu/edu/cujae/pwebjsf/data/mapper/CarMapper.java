@@ -8,9 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 import cu.edu.cujae.pwebjsf.data.entity.Car;
-import cu.edu.cujae.pwebjsf.data.entity.Driver;
 import cu.edu.cujae.pwebjsf.services.dto.CarDto;
-import cu.edu.cujae.pwebjsf.services.dto.DriverDto;
 
 @Mapper(componentModel = "spring")
 public interface CarMapper {
@@ -25,8 +23,7 @@ public interface CarMapper {
 		      @org.mapstruct.Mapping(source = "color", target = "color"),
 		      @org.mapstruct.Mapping(source = "mileage", target = "mileage"),
 		    }
-		  )
-	
+		  )	
 	Car toCar(CarDto carDto);
 
 	List<Car> toCarList(List<CarDto> carDtos);

@@ -30,7 +30,7 @@ public class Car {
 	
 	@ManyToOne
 	@JoinColumn(name = "cod_brand", insertable = false, updatable = false)
-	private Car_Brand brand;
+	private Car_Brand brand;	
 	
 	@Column(name = "cod_brand")
 	private int brandCode;
