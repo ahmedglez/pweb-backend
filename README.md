@@ -56,19 +56,12 @@
 			<version>1.5.3.Final</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.4</version>
-		</dependency>
-
-		
 	</dependencies>
   ```
   
-  ## swagger
+  ## instalando swagger
   
-  - 1. Instala esta dependencia
+  - 1.Instala esta dependencia
   ```
   <dependency>
 	<groupId>org.springdoc</groupId>
