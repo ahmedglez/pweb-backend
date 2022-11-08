@@ -3,12 +3,7 @@ package cu.edu.cujae.pwebjsf.services.dto;
 public class CarModelDto {
 	private int model_code;
 	private String model;
-	
-	public CarModelDto(int model_code, String model) {
-		super();
-		this.model_code = model_code;
-		this.model = model;
-	}
+	private BrandDto brand;
 
 	public int getModel_code() {
 		return model_code;
@@ -25,6 +20,15 @@ public class CarModelDto {
 	public void setModel(String model) {
 		this.model = model;
 	}
+
+	public BrandDto getBrand() {
+		return brand;
+	}
+
+	public void setBrand(BrandDto brand) {
+		this.brand = brand;
+	}
+	
 	
 	
 }

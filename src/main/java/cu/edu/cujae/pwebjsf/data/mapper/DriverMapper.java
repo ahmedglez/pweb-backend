@@ -18,7 +18,7 @@ public interface DriverMapper {
       @org.mapstruct.Mapping(source = "lastName", target = "last_name"),
       @org.mapstruct.Mapping(source = "address", target = "address"),
       @org.mapstruct.Mapping(source = "category.code", target = "categoryCode"),
-      @org.mapstruct.Mapping(source = "category", target = "category"),
+      @org.mapstruct.Mapping(source = "category", target = "category")
     }
   )
   Driver toDriver(DriverDto driverDto);

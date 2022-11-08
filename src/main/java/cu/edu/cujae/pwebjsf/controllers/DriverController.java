@@ -57,7 +57,7 @@ public class DriverController {
   @PostMapping("/save") // Create Driver
   public ResponseEntity<DriverDto> save(@RequestBody DriverDto driverDto) {
     driverSevices.save(driverDto);
-    return new ResponseEntity<>(driverDto, HttpStatus.OK);
+    return new ResponseEntity<>(driverDto, HttpStatus.CREATED);
   }
 
   @PutMapping("/update/{id}") // Update Driver

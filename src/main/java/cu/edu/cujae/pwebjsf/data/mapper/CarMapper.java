@@ -18,8 +18,8 @@ public interface CarMapper {
 		      @org.mapstruct.Mapping(source = "carID", target = "plate"),
 		      @org.mapstruct.Mapping(source = "status.codeStatus", target = "statusCode"),
 		      @org.mapstruct.Mapping(source = "status", target = "status"),
-		      @org.mapstruct.Mapping(source = "brand.cod_brand", target = "brandCode"),
-		      @org.mapstruct.Mapping(source = "brand", target = "brand"),
+		      @org.mapstruct.Mapping(source = "model.cod_model", target = "modelCode"),
+		      @org.mapstruct.Mapping(source = "model", target = "model"),
 		      @org.mapstruct.Mapping(source = "color", target = "color"),
 		      @org.mapstruct.Mapping(source = "mileage", target = "mileage"),
 		    }
@@ -29,7 +29,7 @@ public interface CarMapper {
 	List<Car> toCarList(List<CarDto> carDtos);
 	
 	@InheritInverseConfiguration
-	@Mapping(target = "brand", ignore = false)
+	@Mapping(target = "model", ignore = false)
 	@Mapping(target = "status", ignore = false)
 	CarDto toCarDto(Car car);
 
