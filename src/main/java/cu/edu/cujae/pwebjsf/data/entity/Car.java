@@ -29,11 +29,11 @@ public class Car {
 	private int statusCode;
 	
 	@ManyToOne
-	@JoinColumn(name = "cod_brand", insertable = false, updatable = false)
-	private Car_Brand brand;
+	@JoinColumn(name = "cod_model", insertable = false, updatable = false)
+	private Car_Model model;	
 	
-	@Column(name = "cod_brand")
-	private int brandCode;
+	@Column(name = "cod_model")
+	private int modelCode;
 	
 	@Column(name = "color")
 	private String color;
@@ -91,21 +91,22 @@ public class Car {
 		this.statusCode = statusCode;
 	}
 
-	public Car_Brand getBrand() {
-		return brand;
+	public Car_Model getModel() {
+		return model;
 	}
 
-	public void setBrand(Car_Brand brand) {
-		this.brand = brand;
+	public void setModel(Car_Model model) {
+		this.model = model;
 	}
 
-	public int getBrandCode() {
-		return brandCode;
+	public int getModelCode() {
+		return modelCode;
 	}
 
-	public void setBrandCode(int brandCode) {
-		this.brandCode = brandCode;
+	public void setModelCode(int modelCode) {
+		this.modelCode = modelCode;
 	}
+
 
 
 }
