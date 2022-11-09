@@ -1,11 +1,7 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +48,7 @@ public class Bill {
   @Id
   @Column(name = "cod_bill")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int codBill;
+  private int code;
 
   @Column(name = "amount")
   private double amount;
@@ -60,12 +56,15 @@ public class Bill {
   @Column(name = "special_amount")
   private double specialAmount;
 
-  public int getCodBill() {
-    return this.codBill;
+  @OneToMany(mappedBy = "bill")
+  private List<Contract> contracts;
+
+  public int getCode() {
+    return this.code;
   }
 
-  public void setCodBill(int codBill) {
-    this.codBill = codBill;
+  public void setCode(int codBill) {
+    this.code = codBill;
   }
 
   public double getAmount() {
@@ -82,5 +81,13 @@ public class Bill {
 
   public void setSpecialAmount(double specialAmount) {
     this.specialAmount = specialAmount;
+  }
+
+  public List<Contract> getContracts() {
+    return contracts;
+  }
+
+  public void setContracts(List<Contract> contracts) {
+    this.contracts = contracts;
   }
 }

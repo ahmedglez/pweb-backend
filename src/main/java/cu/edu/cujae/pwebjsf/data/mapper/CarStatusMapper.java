@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 import cu.edu.cujae.pwebjsf.data.entity.Car_Status;
@@ -13,7 +14,7 @@ import cu.edu.cujae.pwebjsf.services.dto.CarStatusDto;
 public interface CarStatusMapper {
 	  @Mappings(
 	    {
-	      @org.mapstruct.Mapping(source = "codeStatus", target = "codeStatus"),
+	      @org.mapstruct.Mapping(source = "code", target = "code"),
 	      @org.mapstruct.Mapping(source = "status", target = "status"),
 	      @org.mapstruct.Mapping(target = "cars", ignore = true),
 	    }
@@ -21,7 +22,7 @@ public interface CarStatusMapper {
 	  Car_Status toCarStatus(CarStatusDto carStatusDto);
 
 	  List<Car_Status> toCarStatusList(
-	    List<CarStatusDto> carStatusDtos
+	    List<CarStatusDto> carStatusDto
 	  );
 
 	  @InheritInverseConfiguration

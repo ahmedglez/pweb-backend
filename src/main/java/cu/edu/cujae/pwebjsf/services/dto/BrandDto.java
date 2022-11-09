@@ -2,16 +2,16 @@ package cu.edu.cujae.pwebjsf.services.dto;
 
 public class BrandDto {
 
-	private int cod_brand;
+	private int code;
     private String brand;
     
 
-	public int getCod_brand() {
-		return cod_brand;
+	public int getCode() {
+		return code;
 	}
 
-	public void setCod_brand(int cod_brand) {
-		this.cod_brand = cod_brand;
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	public String getBrand() {

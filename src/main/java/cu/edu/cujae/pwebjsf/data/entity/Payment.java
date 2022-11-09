@@ -1,11 +1,7 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "payment")
@@ -14,17 +10,20 @@ public class Payment {
   @Id
   @Column(name = "cod_payment")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int cod_payment;
+  private int code;
 
   @Column(name = "payment")
   private String payment;
 
-  public int getCod_payment() {
-    return this.cod_payment;
+  @OneToMany(mappedBy = "payment")
+  private List<Contract> contracts;
+
+  public int getCode() {
+    return this.code;
   }
 
-  public void setCod_payment(int cod_payment) {
-    this.cod_payment = cod_payment;
+  public void setCode(int cod_payment) {
+    this.code = cod_payment;
   }
 
   public String getPayment() {
@@ -33,5 +32,13 @@ public class Payment {
 
   public void setPayment(String payment) {
     this.payment = payment;
+  }
+
+  public List<Contract> getContracts() {
+    return contracts;
+  }
+
+  public void setContracts(List<Contract> contracts) {
+    this.contracts = contracts;
   }
 }

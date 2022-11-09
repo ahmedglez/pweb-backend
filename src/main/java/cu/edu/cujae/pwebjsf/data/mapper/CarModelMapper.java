@@ -13,10 +13,10 @@ import cu.edu.cujae.pwebjsf.services.dto.CarModelDto;
 public interface CarModelMapper {
   @Mappings(
     {
-      @org.mapstruct.Mapping(source = "model_code", target = "codeModel"),
+      @org.mapstruct.Mapping(source = "code", target = "code"),
       @org.mapstruct.Mapping(source = "model", target = "model"),
       @org.mapstruct.Mapping(source = "brand",target = "brand"),
-            @org.mapstruct.Mapping(source = "brand.cod_brand", target = "cod_brand"),
+            @org.mapstruct.Mapping(source = "brand.code", target = "codeBrand"),
       @org.mapstruct.Mapping(target = "cars", ignore = true)
     }
   )
@@ -25,8 +25,6 @@ public interface CarModelMapper {
   List<Car_Model> toCarModelList(List<CarModelDto> carModelDtos);
 
   @InheritInverseConfiguration
-  @Mapping(target = "brand")
-  @Mapping(target = "brand.cod_brand", source = "brand.codeBrand")
   CarModelDto toCarModelDto(Car_Model carModel);
 
   List<CarModelDto> toCarModelDtoList(List<Car_Model> carModels);

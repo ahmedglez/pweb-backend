@@ -14,14 +14,15 @@ import cu.edu.cujae.pwebjsf.services.dto.CarDto;
 public interface CarMapper {
 	@Mappings(
 		    {
-		      		@org.mapstruct.Mapping(source = "code", target = "codeCar"),
-		      		@org.mapstruct.Mapping(source = "carID", target = "plate"),
+		      		@org.mapstruct.Mapping(source = "code", target = "code"),
+		      		@org.mapstruct.Mapping(source = "carID", target = "carID"),
 					@org.mapstruct.Mapping(source = "status", target = "status"),
-					@org.mapstruct.Mapping(source = "status.codeStatus", target = "statusCode"),
-					@org.mapstruct.Mapping(source = "model", target = "carModel"),
-		      		@org.mapstruct.Mapping(source = "model.model_code", target = "modelCode"),
+					@org.mapstruct.Mapping(source = "status.code", target = "statusCode"),
+					@org.mapstruct.Mapping(source = "model", target = "model"),
+		      		@org.mapstruct.Mapping(source = "model.code", target = "modelCode"),
 		      		@org.mapstruct.Mapping(source = "color", target = "color"),
 		      		@org.mapstruct.Mapping(source = "mileage", target = "mileage"),
+					@org.mapstruct.Mapping(target = "contracts", ignore = true),
 		    }
 		  )	
 	Car toCar(CarDto carDto);
@@ -29,12 +30,8 @@ public interface CarMapper {
 	List<Car> toCarList(List<CarDto> carDtos);
 	
 	@InheritInverseConfiguration
-	@Mapping(target = "model", source = "carModel")
-	@Mapping(target = "status")
-	@Mapping(target = "model.model_code", source = "modelCode")
-	@Mapping(target = "model.brand.cod_brand", source = "carModel.brand.codeBrand")
-	CarDto toCarDto(Car car);
 
+	CarDto toCarDto(Car car);
 	List<CarDto> toCarDtoList(List<Car> cars);
 	
 		 

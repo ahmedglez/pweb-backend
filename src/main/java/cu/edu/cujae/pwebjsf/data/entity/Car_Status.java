@@ -14,7 +14,7 @@ public class Car_Status {
 	
 	@Id
 	@Column(name = "cod_status")
-	private int codeStatus;
+	private int code;
 
 	@Column(name ="status")
 	private String status;
@@ -24,12 +24,12 @@ public class Car_Status {
 
 		
 //	Setters and Getters
-	public void setCodeStatus(int codeStatus) {
-		this.codeStatus = codeStatus;
+	public void setCode(int codeStatus) {
+		this.code = codeStatus;
 	}
 
-	public int getCodeStatus() {
-		return codeStatus;
+	public int getCode() {
+		return code;
 	}
 	
 	

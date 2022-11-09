@@ -5,11 +5,6 @@ public class BillDto {
     private float amount;
     private float specialAmount;
 
-    public BillDto(int code, float amount, float specialAmount) {
-        this.code = code;
-        this.amount = amount;
-        this.specialAmount = specialAmount;
-    }
 
     public float getAmount() {
         return amount;

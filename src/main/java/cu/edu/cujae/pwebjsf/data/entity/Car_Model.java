@@ -10,28 +10,28 @@ public class Car_Model {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "cod_model")
-  private int codeModel;
+  private int code;
 
   @Column(name = "model")
   private String model;
 
   @Column(name = "cod_brand")
-  private int cod_brand;
+  private int codeBrand;
 
   @ManyToOne
   @JoinColumn(name = "cod_brand", insertable = false, updatable = false)
   private Car_Brand brand;
 
-  @OneToMany(mappedBy = "carModel")
+  @OneToMany(mappedBy = "model")
   private List<Car> cars;
 
   //	Setters and Getters
-  public int getCodeModel() {
-    return codeModel;
+  public int getCode() {
+    return code;
   }
 
-  public void setCodeModel(int codeModel) {
-    this.codeModel = codeModel;
+  public void setCode(int codeModel) {
+    this.code = codeModel;
   }
 
   public String getModel() {
@@ -42,12 +42,12 @@ public class Car_Model {
     this.model = model;
   }
 
-  public Integer getCod_brand() {
-    return this.cod_brand;
+  public Integer getCodeBrand() {
+    return this.codeBrand;
   }
 
-  public void setCod_brand(Integer cod_brand) {
-    this.cod_brand = cod_brand;
+  public void setCodeBrand(Integer cod_brand) {
+    this.codeBrand = cod_brand;
   }
 
   public Car_Brand getBrand() {

@@ -1,16 +1,16 @@
 package cu.edu.cujae.pwebjsf.services.dto;
 
 public class CarModelDto {
-	private int model_code;
+	private int code;
 	private String model;
 	private BrandDto brand;
 
-	public int getModel_code() {
-		return model_code;
+	public int getCode() {
+		return code;
 	}
 
-	public void setModel_code(int model_code) {
-		this.model_code = model_code;
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	public String getModel() {

@@ -15,13 +15,14 @@ public interface TouristMapper {
     @Mappings(
             {
                     @org.mapstruct.Mapping(source = "code", target = "code"),
-                    @org.mapstruct.Mapping(source = "idPassport", target = "passport"),
+                    @org.mapstruct.Mapping(source = "idPassport", target = "idPassport"),
                     @org.mapstruct.Mapping(source = "name", target = "name"),
-                    @org.mapstruct.Mapping(source = "lastName", target = "last_name"),
+                    @org.mapstruct.Mapping(source = "lastName", target = "lastName"),
                     @org.mapstruct.Mapping(source = "age", target = "age"),
                     @org.mapstruct.Mapping(source = "sex", target = "sex"),
-                    @org.mapstruct.Mapping(source = "telephoneNumber", target = "telephone"),
+                    @org.mapstruct.Mapping(source = "telephoneNumber", target = "telephoneNumber"),
                     @org.mapstruct.Mapping(source = "country", target = "country"),
+                    @org.mapstruct.Mapping(target = "contracts", ignore = true)
             }
     )
     Tourist toTourist(TouristDto touristDto);

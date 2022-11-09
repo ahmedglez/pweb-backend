@@ -1,13 +1,7 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cars")
@@ -16,10 +10,10 @@ public class Car {
 	@Id
 	@Column(name = "cod_car")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codeCar;
+	private int code;
 	
 	@Column(name = "car_id")
-	private String plate;
+	private String carID;
 	
 	@Column(name = "cod_status")
 	private int statusCode;
@@ -33,7 +27,7 @@ public class Car {
 
 	@ManyToOne
 	@JoinColumn(name = "cod_model", insertable = false, updatable = false)
-	private Car_Model carModel;
+	private Car_Model model;
 	
 	@Column(name = "color")
 	private String color;
@@ -41,24 +35,25 @@ public class Car {
 	@Column(name = "km_driver")
 	private double mileage;
 
-
+	@OneToMany(mappedBy = "car")
+	private List<Contract> contracts;
 
 	
 //	Getters and Setters
-	public int getCodeCar() {
-		return codeCar;
+	public int getCode() {
+		return code;
 	}
 
-	public void setCodeCar(int codeCar) {
-		this.codeCar = codeCar;
+	public void setCode(int codeCar) {
+		this.code = codeCar;
 	}
 
-	public String getPlate() {
-		return plate;
+	public String getCarID() {
+		return carID;
 	}
 
-	public void setPlate(String plate) {
-		this.plate = plate;
+	public void setCarID(String plate) {
+		this.carID = plate;
 	}
 
 	public String getColor() {
@@ -93,12 +88,12 @@ public class Car {
 		this.statusCode = statusCode;
 	}
 
-	public Car_Model getCarModel() {
-		return carModel;
+	public Car_Model getModel() {
+		return model;
 	}
 
-	public void setCarModel(Car_Model carModel) {
-		this.carModel = carModel;
+	public void setModel(Car_Model carModel) {
+		this.model = carModel;
 	}
 
 	public int getModelCode() {
@@ -109,6 +104,12 @@ public class Car {
 		this.modelCode = modelCode;
 	}
 
+	public List<Contract> getContracts() {
+		return contracts;
+	}
 
+	public void setContracts(List<Contract> contracts) {
+		this.contracts = contracts;
+	}
 
 }

@@ -55,7 +55,7 @@ public class DriverRepository {
 
   public DriverDto update(DriverDto driver, int driverId) {
     Driver driverEntity = mapper.toDriver(driver);
-    driverEntity.setCodeDriver(driverId);
+    driverEntity.setCode(driverId);
     Driver driverUpdated = driverCrudRepository.save(driverEntity);
     return mapper.toDriverDto(driverUpdated);    
   }

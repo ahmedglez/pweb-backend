@@ -1,13 +1,7 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "driver")
@@ -16,7 +10,7 @@ public class Driver {
   @Id
   @Column(name = "cod_driver")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int codeDriver;
+  private int code;
 
   @Column(name = "id")
   private String ci;
@@ -25,7 +19,7 @@ public class Driver {
   private String name;
 
   @Column(name = "last_name")
-  private String last_name;
+  private String lastName;
 
   @Column(name = "address")
   private String address;
@@ -37,13 +31,16 @@ public class Driver {
   @JoinColumn(name = "cod_category", insertable = false, updatable = false)
   private Driver_Category category;
 
+  @OneToMany(mappedBy = "driver")
+  private List<Contract> contracts;
+
   /* GETTERS AND SETTERS */
-  public int getCodeDriver() {
-    return this.codeDriver;
+  public int getCode() {
+    return this.code;
   }
 
-  public void setCodeDriver(int codeDriver) {
-    this.codeDriver = codeDriver;
+  public void setCode(int codeDriver) {
+    this.code = codeDriver;
   }
 
   public String getName() {
@@ -54,12 +51,12 @@ public class Driver {
     this.name = name;
   }
 
-  public String getLast_name() {
-    return this.last_name;
+  public String getLastName() {
+    return this.lastName;
   }
 
-  public void setLast_name(String last_name) {
-    this.last_name = last_name;
+  public void setLastName(String last_name) {
+    this.lastName = last_name;
   }
 
   public String getAddress() {
@@ -100,5 +97,13 @@ public class Driver {
 
   public void setCi(String ci) {
     this.ci = ci;
+  }
+
+  public List<Contract> getContracts() {
+    return contracts;
+  }
+
+  public void setContracts(List<Contract> contracts) {
+    this.contracts = contracts;
   }
 }

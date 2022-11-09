@@ -10,7 +10,7 @@ public class Car_Brand {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "cod_brand")
-  private int codeBrand;
+  private int code;
 
   @Column(name = "brand")
   private String brand;
@@ -23,12 +23,12 @@ public class Car_Brand {
 
   //	  Setter and Getters
 
-  public int getCodeBrand() {
-    return codeBrand;
+  public int getCode() {
+    return code;
   }
 
-  public void setCodeBrand(int codeBrand) {
-    this.codeBrand = codeBrand;
+  public void setCode(int codeBrand) {
+    this.code = codeBrand;
   }
 
   public String getBrand() {

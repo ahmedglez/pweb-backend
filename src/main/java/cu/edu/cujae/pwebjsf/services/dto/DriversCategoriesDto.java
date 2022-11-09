@@ -4,10 +4,6 @@ public class DriversCategoriesDto {
     private int code;
     private String category;
 
-    public DriversCategoriesDto(int code, String category) {
-        this.code = code;
-        this.category = category;
-    }
 
     public String getCategory() { return category; }
 

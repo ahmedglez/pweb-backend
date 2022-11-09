@@ -11,7 +11,7 @@ import org.mapstruct.Mappings;
 public interface CarBrandMapper {
   @Mappings(
     {
-      @org.mapstruct.Mapping(source = "cod_brand", target = "codeBrand"),
+      @org.mapstruct.Mapping(source = "code", target = "code"),
       @org.mapstruct.Mapping(source = "brand", target = "brand"),
       @org.mapstruct.Mapping(target = "models", ignore = true),
     }

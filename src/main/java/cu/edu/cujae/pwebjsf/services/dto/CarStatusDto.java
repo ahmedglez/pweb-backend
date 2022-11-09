@@ -2,20 +2,14 @@ package cu.edu.cujae.pwebjsf.services.dto;
 
 public class CarStatusDto {
 	
-	private int codeStatus;
+	private int code;
 	private String status;
-	
-	
-	public CarStatusDto(int codeStatus, String status) {
-		super();
-		this.codeStatus = codeStatus;
-		this.status = status;
+
+	public int getCode() {
+		return code;
 	}
-	public int getCodeStatus() {
-		return codeStatus;
-	}
-	public void setCodeStatus(int codeStatus) {
-		this.codeStatus = codeStatus;
+	public void setCode(int code) {
+		this.code = code;
 	}
 	public String getStatus() {
 		return status;

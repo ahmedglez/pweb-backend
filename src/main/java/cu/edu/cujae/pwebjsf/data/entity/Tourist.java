@@ -1,6 +1,7 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tourist")
@@ -12,13 +13,13 @@ public class Tourist {
     private Integer code;
 
     @Column(name = "passport_id")
-    private String passport;
+    private String idPassport;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
 
     @Column(name = "age")
     private Integer age;
@@ -27,10 +28,13 @@ public class Tourist {
     private String sex;
 
     @Column(name = "telephone_number")
-    private String telephone;
+    private String telephoneNumber;
 
     @Column(name = "country")
     private String country;
+
+    @OneToMany(mappedBy = "tourist")
+    private List<Contract> contracts;
 
     /* GETTERS AND SETTERS */
 
@@ -42,12 +46,12 @@ public class Tourist {
         this.code = code;
     }
 
-    public String getPassport() {
-        return passport;
+    public String getIdPassport() {
+        return idPassport;
     }
 
-    public void setPassport(String passport) {
-        this.passport = passport;
+    public void setIdPassport(String passport) {
+        this.idPassport = passport;
     }
 
     public String getName() {
@@ -58,12 +62,12 @@ public class Tourist {
         this.name = name;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String last_name) {
+        this.lastName = last_name;
     }
 
     public Integer getAge() {
@@ -82,12 +86,12 @@ public class Tourist {
         this.sex = sex;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getTelephoneNumber() {
+        return telephoneNumber;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setTelephoneNumber(String telephone) {
+        this.telephoneNumber = telephone;
     }
 
     public String getCountry() {
@@ -96,5 +100,13 @@ public class Tourist {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 }

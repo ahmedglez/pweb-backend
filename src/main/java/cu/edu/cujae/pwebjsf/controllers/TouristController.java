@@ -24,15 +24,21 @@ public class TouristController {
         return new ResponseEntity<>(touristServices.getById(code),HttpStatus.OK);
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<TouristDto> save(@RequestBody TouristDto touristDto){
+    @PostMapping("/")
+    public ResponseEntity<String> insert(@RequestBody TouristDto touristDto){
         touristServices.save(touristDto);
-        return new ResponseEntity<>(touristDto,HttpStatus.OK);
+        return ResponseEntity.ok("Tourist inserted");
     }
 
-    @DeleteMapping("/delete/{code}")
-    public ResponseEntity<TouristDto> delete(@PathVariable("code") Integer code){
+    @PutMapping("/")
+    public ResponseEntity<String> update(@RequestBody TouristDto touristDto){
+        touristServices.save(touristDto);
+        return ResponseEntity.ok("Tourist updated");
+    }
+
+    @DeleteMapping("/{code}")
+    public ResponseEntity<String> delete(@PathVariable("code") Integer code){
         touristServices.delete(code);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok("Tourist deleted");
     }
 }

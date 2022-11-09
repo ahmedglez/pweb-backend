@@ -24,4 +24,7 @@ public interface DriverCategoryMapper {
 
   @InheritInverseConfiguration
   DriversCategoriesDto toDriverCategoryDto(Driver_Category driverCategory);
+  List<DriversCategoriesDto> toDriverCategoryDtoList(
+          List<Driver_Category> driversCategory
+  );
 }
