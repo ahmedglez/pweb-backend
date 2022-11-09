@@ -5,7 +5,7 @@ public class CarDto {
 	private String carID;
 	private String color;
 	private CarStatusDto status;
-	private ModelDto model;
+	private CarModelDto model;
 	private double mileage;
 	
 
@@ -51,11 +51,11 @@ public class CarDto {
 		this.mileage = mileage;
 	}
 
-	public ModelDto getModel() {
+	public CarModelDto getModel() {
 		return model;
 	}
 
-	public void setModel(ModelDto model) {
+	public void setModel(CarModelDto model) {
 		this.model = model;
 	}
 	

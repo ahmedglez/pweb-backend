@@ -1,19 +1,14 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "car_model")
 public class Car_Model {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "cod_model")
   private int codeModel;
 
@@ -27,7 +22,7 @@ public class Car_Model {
   @JoinColumn(name = "cod_brand", insertable = false, updatable = false)
   private Car_Brand brand;
 
-  @OneToMany(mappedBy = "model")
+  @OneToMany(mappedBy = "carModel")
   private List<Car> cars;
 
   //	Setters and Getters

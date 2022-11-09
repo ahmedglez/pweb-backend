@@ -21,25 +21,27 @@ public class Car {
 	@Column(name = "car_id")
 	private String plate;
 	
+	@Column(name = "cod_status")
+	private int statusCode;
+
 	@ManyToOne
 	@JoinColumn(name = "cod_status", insertable = false, updatable = false)
 	private Car_Status status;
 	
-	@Column(name = "cod_status")
-	private int statusCode;
-	
-	@ManyToOne
-	@JoinColumn(name = "cod_model", insertable = false, updatable = false)
-	private Car_Model model;	
-	
 	@Column(name = "cod_model")
 	private int modelCode;
+
+	@ManyToOne
+	@JoinColumn(name = "cod_model", insertable = false, updatable = false)
+	private Car_Model carModel;
 	
 	@Column(name = "color")
 	private String color;
 	
 	@Column(name = "km_driver")
 	private double mileage;
+
+
 
 	
 //	Getters and Setters
@@ -91,12 +93,12 @@ public class Car {
 		this.statusCode = statusCode;
 	}
 
-	public Car_Model getModel() {
-		return model;
+	public Car_Model getCarModel() {
+		return carModel;
 	}
 
-	public void setModel(Car_Model model) {
-		this.model = model;
+	public void setCarModel(Car_Model carModel) {
+		this.carModel = carModel;
 	}
 
 	public int getModelCode() {

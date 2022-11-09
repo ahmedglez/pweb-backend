@@ -1,17 +1,14 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "car_brand")
 public class Car_Brand {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "cod_brand")
   private int codeBrand;
 

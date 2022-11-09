@@ -1,7 +1,6 @@
 package cu.edu.cujae.pwebjsf.data.mapper;
 
 import java.util.List;
-
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -16,8 +15,8 @@ public interface CarModelMapper {
     {
       @org.mapstruct.Mapping(source = "model_code", target = "codeModel"),
       @org.mapstruct.Mapping(source = "model", target = "model"),
-      @org.mapstruct.Mapping(source = "brand.cod_brand", target = "cod_brand"),
       @org.mapstruct.Mapping(source = "brand",target = "brand"),
+            @org.mapstruct.Mapping(source = "brand.cod_brand", target = "cod_brand"),
       @org.mapstruct.Mapping(target = "cars", ignore = true)
     }
   )
@@ -26,7 +25,8 @@ public interface CarModelMapper {
   List<Car_Model> toCarModelList(List<CarModelDto> carModelDtos);
 
   @InheritInverseConfiguration
-  @Mapping(target ="brand", ignore = false)
+  @Mapping(target = "brand")
+  @Mapping(target = "brand.cod_brand", source = "brand.codeBrand")
   CarModelDto toCarModelDto(Car_Model carModel);
 
   List<CarModelDto> toCarModelDtoList(List<Car_Model> carModels);
