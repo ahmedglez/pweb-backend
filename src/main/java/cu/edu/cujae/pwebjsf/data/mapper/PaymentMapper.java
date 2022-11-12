@@ -13,7 +13,7 @@ public interface PaymentMapper {
     {
       @org.mapstruct.Mapping(source = "code", target = "code"),
       @org.mapstruct.Mapping(source = "payment", target = "payment"),
-      @org.mapstruct.Mapping(source = "contracts", target = "contracts"),
+      @org.mapstruct.Mapping(target = "contracts", ignore = true),
     }
   )
   Payment toPayment(PaymentsDto paymentsDto);

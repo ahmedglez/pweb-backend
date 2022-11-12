@@ -1,15 +1,13 @@
 package cu.edu.cujae.pwebjsf.data.crud;
 
+import cu.edu.cujae.pwebjsf.data.entity.Car;
 import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
 
-import cu.edu.cujae.pwebjsf.data.entity.Car;
+public interface CarCrudRepository extends CrudRepository<Car, Integer> {
+  List<Car> findAll();
 
-public interface CarCrudRepository extends CrudRepository<Car, Integer>{
-	List<Car> findAll();
+  List<Car> findByModelCode(int code);
 
-	
-
-	Car findById(int carId);
+  Car findById(int carId);
 }

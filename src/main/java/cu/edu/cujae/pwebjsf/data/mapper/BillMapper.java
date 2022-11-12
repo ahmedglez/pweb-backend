@@ -17,7 +17,7 @@ public interface BillMapper {
         source = "specialAmount",
         target = "specialAmount"
       ),
-      @org.mapstruct.Mapping(source = "contracts", target = "contracts"),
+      @org.mapstruct.Mapping(target = "contracts", ignore = true),
     }
   )
   Bill toBill(BillDto billDto);
