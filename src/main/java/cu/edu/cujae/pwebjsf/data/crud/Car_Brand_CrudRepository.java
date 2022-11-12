@@ -12,4 +12,5 @@ public interface Car_Brand_CrudRepository
 
   void deleteById(int brandId);
 
+  Car_Brand save(Car_Brand brand);
 }

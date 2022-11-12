@@ -11,4 +11,5 @@ public interface BillCrudRepository extends CrudRepository<Bill, Integer> {
 
   void deleteById(int billId);
 
+  Bill save(Bill bill);
 }
