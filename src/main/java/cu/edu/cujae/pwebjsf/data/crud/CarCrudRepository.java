@@ -9,5 +9,7 @@ public interface CarCrudRepository extends CrudRepository<Car, Integer> {
 
   List<Car> findByModelCode(int code);
 
+  List<Car> findByStatusCode(int code);
+
   Car findById(int carId);
 }

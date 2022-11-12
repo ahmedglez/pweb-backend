@@ -32,4 +32,8 @@ public class CarServices {
   public List<CarDto> getByModel(int code) {
     return carRepository.getByModel(code);
   }
+
+  public List<CarDto> getByStatus(int code) {
+    return carRepository.getByStatus(code);
+  }
 }

@@ -60,6 +60,14 @@ public class CarController {
     return new ResponseEntity<>(carSevices.getByModel(code), HttpStatus.OK);
   }
 
+  //Get Cars by Status
+  @GetMapping("/status/{code}")
+  public ResponseEntity<List<CarDto>> getByStatus(
+    @PathVariable("code") int code
+  ) {
+    return new ResponseEntity<>(carSevices.getByStatus(code), HttpStatus.OK);
+  }
+
   @PostMapping("/")
   public ResponseEntity<String> insert(@RequestBody CarDto carDto) {
     carSevices.save(carDto);

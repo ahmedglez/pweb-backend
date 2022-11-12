@@ -41,4 +41,10 @@ public class CarRepository {
     List<Car> cars = carCrudRepository.findByModelCode(code);
     return mapper.toCarDtoList(cars);
   }
+
+  public List<CarDto> getByStatus(int code) {
+    List<Car> cars = carCrudRepository.findByStatusCode(code);
+    return mapper.toCarDtoList(cars);
+  }
+
 }
