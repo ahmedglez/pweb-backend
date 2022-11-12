@@ -7,7 +7,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import cu.edu.cujae.pwebjsf.data.entity.Car_Model;
 import cu.edu.cujae.pwebjsf.data.entity.Car_Status;
+import cu.edu.cujae.pwebjsf.services.dto.CarModelDto;
 import cu.edu.cujae.pwebjsf.services.dto.CarStatusDto;
 
 @Mapper(componentModel = "spring")
@@ -27,5 +29,7 @@ public interface CarStatusMapper {
 
 	  @InheritInverseConfiguration
 	  CarStatusDto toCarStatusDto(Car_Status carStatus);
+	  
+	  List<CarStatusDto> toCarStatusDtoList(List<Car_Status> carStatus);
 
 }
