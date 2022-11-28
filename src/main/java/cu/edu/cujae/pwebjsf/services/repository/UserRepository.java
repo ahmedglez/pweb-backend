@@ -85,14 +85,7 @@ public class UserRepository {
   }
 
   public UserDto findByUsername(String username) {
-    UserDto user = new UserDto();
-    List<UserDto> users = getAll();
-    for (int i = 0; i < users.size(); i++) {
-      if (users.get(i).getUsername().equals(username)) {
-        user = users.get(i);
-        i = users.size();
-      }
-    }
-    return user;
+    User user = userCrudRepository.findByUsername(username);
+    return userMapper.toUserDto(user);
   }
 }

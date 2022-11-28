@@ -21,9 +21,7 @@ public class User {
   @Column(name = "email")
   private String email;
 
-  @Column(name = "enabled")
-  private boolean enabled;
-
+  
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
     name = "user_roles",
@@ -64,16 +62,7 @@ public class User {
     this.email = email;
   }
 
-  public boolean isEnabled() {
-    return enabled;
-  }
-
   
-
-  public void setEnabled(boolean enabled) {
-    this.enabled = enabled;
-  }
-
 public List<Role> getRoles() {
     return roles;
 }

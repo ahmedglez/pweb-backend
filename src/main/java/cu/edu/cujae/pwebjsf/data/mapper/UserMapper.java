@@ -15,7 +15,6 @@ public interface UserMapper {
       @org.mapstruct.Mapping(source = "username", target = "username"),
       @org.mapstruct.Mapping(source = "password", target = "password"),
       @org.mapstruct.Mapping(source = "email", target = "email"),
-      @org.mapstruct.Mapping(source = "enabled", target = "enabled"),
       @org.mapstruct.Mapping(source = "roles", target = "roles"),
     }
   )

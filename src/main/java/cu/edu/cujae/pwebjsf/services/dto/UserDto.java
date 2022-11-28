@@ -8,7 +8,6 @@ public class UserDto {
   private String username;
   private String password;
   private String email;
-  private boolean enabled;
   private List<RoleDto> roles;
 
   public String getUsername() {
@@ -27,14 +26,7 @@ public class UserDto {
     this.email = email;
   }
 
-  public boolean isEnabled() {
-    return enabled;
-  }
-
-  public void setEnabled(boolean enabled) {
-    this.enabled = enabled;
-  }
-
+  
   
   public String getPassword() {
     return password;
