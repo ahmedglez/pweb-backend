@@ -14,7 +14,7 @@ public interface RoleMapper {
       @org.mapstruct.Mapping(source = "code", target = "code"),
       @org.mapstruct.Mapping(source = "role", target = "role"),
       @org.mapstruct.Mapping(source = "description", target = "description"),
-      @org.mapstruct.Mapping(source = "users", target = "users"),
+      @org.mapstruct.Mapping(target = "users", ignore = true),
     }
   )
   Role toRole(RoleDto role);

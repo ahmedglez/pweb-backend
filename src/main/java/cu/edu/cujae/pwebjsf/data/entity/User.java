@@ -1,6 +1,6 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.*;
 
 @Entity
@@ -21,14 +21,17 @@ public class User {
   @Column(name = "email")
   private String email;
 
-  
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
   @JoinTable(
-    name = "user_roles",
-    joinColumns = @JoinColumn(name = "cod_user"),
-    inverseJoinColumns = @JoinColumn(name = "cod_role")
+    name = "users_roles",
+    joinColumns = {
+      @JoinColumn(name = "cod_user"),
+    },
+    inverseJoinColumns = {
+      @JoinColumn(name = "cod_role"),
+    }
   )
-  private List<Role> roles;
+  private Collection<Role> roles;
 
   public Integer getCode() {
     return code;
@@ -62,12 +65,11 @@ public class User {
     this.email = email;
   }
 
-  
-public List<Role> getRoles() {
+  public Collection<Role> getRoles() {
     return roles;
-}
+  }
 
-public void setRoles(List<Role> roles) {
+  public void setRoles(Collection<Role> roles) {
     this.roles = roles;
-}
+  }
 }

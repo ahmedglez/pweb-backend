@@ -1,6 +1,6 @@
 package cu.edu.cujae.pwebjsf.services.dto;
 
-import java.util.List;
+import java.util.Collection;
 
 public class UserDto {
 
@@ -8,7 +8,7 @@ public class UserDto {
   private String username;
   private String password;
   private String email;
-  private List<RoleDto> roles;
+  private Collection<RoleDto> roles;
 
   public String getUsername() {
     return username;
@@ -26,8 +26,6 @@ public class UserDto {
     this.email = email;
   }
 
-  
-  
   public String getPassword() {
     return password;
   }
@@ -44,11 +42,11 @@ public class UserDto {
     this.code = code;
   }
 
-public List<RoleDto> getRoles() {
+  public Collection<RoleDto> getRoles() {
     return roles;
-}
+  }
 
-public void setRoles(List<RoleDto> roles) {
+  public void setRoles(Collection<RoleDto> roles) {
     this.roles = roles;
-}
+  }
 }

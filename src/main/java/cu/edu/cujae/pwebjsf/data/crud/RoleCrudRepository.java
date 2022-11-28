@@ -1,13 +1,15 @@
 package cu.edu.cujae.pwebjsf.data.crud;
 
 import cu.edu.cujae.pwebjsf.data.entity.Role;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
-
 public interface RoleCrudRepository extends CrudRepository<Role, Integer> {
+  List<Role> findAll();
 
-    List<Role> findAll();
+  Role save(Role role);
 
-    Role save(Role role);
+  Role findByCode(Integer code);
+
+  void deleteByCode(Integer code);
 }
