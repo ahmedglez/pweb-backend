@@ -1,44 +1,62 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
-import javax.persistence.*;
 import java.util.List;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
 public class Role {
 
-    @Id
-    @Column(name = "cod_role")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer code;
+  @Id
+  @Column(name = "cod_role")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer code;
 
-    @Column(name = "role")
-    private String role;
+  @Column(name = "role")
+  private String role;
 
-    @OneToMany(mappedBy = "code")
-    private List<Role> roles;
+  @Column(name = "description")
+  private String description;
 
-    public Integer getCode() {
-        return code;
-    }
+  @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "cod_role"),
+        inverseJoinColumns = @JoinColumn(name = "cod_user")
+    )
+  private List<User> users;
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
+  public Integer getCode() {
+    return code;
+  }
 
-    public String getRole() {
-        return role;
-    }
+  public void setCode(Integer code) {
+    this.code = code;
+  }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+  public String getRole() {
+    return role;
+  }
 
-    public List<Role> getRoles() {
-        return roles;
-    }
+  public void setRole(String role) {
+    this.role = role;
+  }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
+  public List<User> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
+
+public String getDescription() {
+    return description;
+}
+
+public void setDescription(String description) {
+    this.description = description;
+}
+
+  
 }

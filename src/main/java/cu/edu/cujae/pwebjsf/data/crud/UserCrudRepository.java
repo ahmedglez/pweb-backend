@@ -1,13 +1,31 @@
 package cu.edu.cujae.pwebjsf.data.crud;
 
 import cu.edu.cujae.pwebjsf.data.entity.User;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
+public interface UserCrudRepository extends CrudRepository<User, Integer> {
+  List<User> findAll();
 
-public interface UserCrudRepository extends CrudRepository<User,Integer> {
+  User save(User user);
 
-    List<User> findAll();
+  User findByCode(Integer code);
 
-    User save(User user);
+  User findByUsername(String username);
+
+  User findByEmail(String email);
+
+  void delete(User user);
+
+  void deleteByCode(Integer code);
+
+  void deleteByUsername(String username);
+
+  void deleteByEmail(String email);
+
+  boolean existsByCode(Integer code);
+
+  boolean existsByUsername(String username);
+
+  boolean existsByEmail(String email);
 }

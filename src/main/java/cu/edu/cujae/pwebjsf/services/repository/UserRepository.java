@@ -12,75 +12,87 @@ import cu.edu.cujae.pwebjsf.data.mapper.UserMapper;
 import cu.edu.cujae.pwebjsf.data.utils.UserPK;
 import cu.edu.cujae.pwebjsf.services.dto.UserAndRoleDto;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepository {
 
-    @Autowired
-    private UserAndRoleCrudRepository userAndRoleCrudRepository;
-    @Autowired
-    private UserAndRoleMapper userAndRoleMapper;
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private UserCrudRepository userCrudRepository;
-    @Autowired
-    private RoleMapper roleMapper;
-    @Autowired
-    private RoleCrudRepository roleCrudRepository;
+  @Autowired
+  private UserAndRoleCrudRepository userAndRoleCrudRepository;
 
-    public List<UserDto> getAll(){
-        List<UserAndRoleDto> users = userAndRoleMapper.toListUserAndRoleDto(userAndRoleCrudRepository.findAll());
-        List<UserDto> result = new ArrayList<>();
-        for(UserAndRoleDto e: users){
-            e.getUser().setRole(e.getRole());
-            result.add(e.getUser());
-        }
-        return result;
+  @Autowired
+  private UserAndRoleMapper userAndRoleMapper;
+
+  @Autowired
+  private UserMapper userMapper;
+
+  @Autowired
+  private UserCrudRepository userCrudRepository;
+
+  @Autowired
+  private RoleMapper roleMapper;
+
+  @Autowired
+  private RoleCrudRepository roleCrudRepository;
+
+  public List<UserDto> getAll() {
+    List<User> users = (List<User>) userCrudRepository.findAll();
+    return userMapper.toListUserDto(users);
+  }
+
+  public UserDto getById(Integer code) {
+    return userMapper.toUserDto(userCrudRepository.findByCode(code));
+  }
+
+  public void save(UserDto user) {
+    User userEntity = userMapper.toUser(user);
+    userCrudRepository.save(userEntity);
+    for (Role role : userEntity.getRoles()) {
+      UserAndRole userAndRole = new UserAndRole();
+      userAndRole.setUser(userEntity);
+      userAndRole.setRole(role);
+      userAndRoleCrudRepository.save(userAndRole);
     }
+  }
 
-    public UserDto getById(Integer code){
-        UserAndRoleDto user = userAndRoleMapper.toUserAndRoleDto(userAndRoleCrudRepository.getByCodeUser(code));
-        user.getUser().setRole(user.getRole());
-        return user.getUser();
+  public void delete(Integer code) {
+    UserAndRole userAndRoleEntity = userAndRoleCrudRepository.getByCodeUser(
+      code
+    );
+    userAndRoleCrudRepository.delete(userAndRoleEntity);
+
+    User userEntity = userCrudRepository.findByCode(code);
+
+    userCrudRepository.delete(userEntity);
+  }
+
+  public UserDto exists(UserDto userDto) {
+    UserDto user = new UserDto();
+    List<UserDto> users = getAll();
+    for (int i = 0; i < users.size(); i++) {
+      if (
+        users.get(i).getUsername().equals(userDto.getUsername()) &&
+        users.get(i).getPassword().equals(userDto.getPassword())
+      ) {
+        user = users.get(i);
+        i = users.size();
+      }
     }
+    return user;
+  }
 
-    public void save(UserDto user){
-        UserAndRoleDto userDto = new UserAndRoleDto();
-        User userEntity = userMapper.toUser(user);
-        userDto.setUser(userMapper.toUserDto(userCrudRepository.save(userEntity)));
-        Role role = roleMapper.toRole(user.getRole());
-        userDto.setRole(roleMapper.toRoleDto(roleCrudRepository.save(role)));
-        UserAndRole userAndRoleEntity = userAndRoleMapper.toUserAndRole(userDto);
-        userAndRoleCrudRepository.save(userAndRoleEntity);
+  public UserDto findByUsername(String username) {
+    UserDto user = new UserDto();
+    List<UserDto> users = getAll();
+    for (int i = 0; i < users.size(); i++) {
+      if (users.get(i).getUsername().equals(username)) {
+        user = users.get(i);
+        i = users.size();
+      }
     }
-
-    public void delete(Integer code){
-        UserDto userDto = getById(code);
-        UserAndRoleDto user = new UserAndRoleDto();
-        user.setUser(userDto);
-        user.setRole(userDto.getRole());
-        UserAndRole userEntity = userAndRoleMapper.toUserAndRole(user);
-        userAndRoleCrudRepository.delete(userEntity);
-        userCrudRepository.deleteById(code);
-
-    }
-
-    public UserDto exists(UserDto userDto){
-        UserDto user = new UserDto();
-        List<UserDto> users = getAll();
-        for(int i=0; i < users.size();i++){
-            if(users.get(i).getName().equals(userDto.getName()) && users.get(i).getPassword().equals(userDto.getPassword())){
-                user = users.get(i);
-                i = users.size();
-            }
-        }
-        return user;
-    }
-
+    return user;
+  }
 }

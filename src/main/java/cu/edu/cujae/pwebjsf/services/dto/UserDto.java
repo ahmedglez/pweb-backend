@@ -1,25 +1,62 @@
 package cu.edu.cujae.pwebjsf.services.dto;
 
+import java.util.List;
+
 public class UserDto {
-    private int code;
-    private String name;
-    private String password;
-    private RoleDto role;
 
+  private int code;
+  private String username;
+  private String password;
+  private String email;
+  private boolean enabled;
+  private List<RoleDto> roles;
 
-    public String getName() { return name; }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setName(String name) { this.name = name; }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getPassword() { return password; }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setPassword(String password) { this.password = password; }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public RoleDto getRole() { return role; }
+  public boolean isEnabled() {
+    return enabled;
+  }
 
-    public void setRole(RoleDto role) { this.role = role; }
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
 
-    public int getCode() { return code; }
+  
+  public String getPassword() {
+    return password;
+  }
 
-    public void setCode(int code) { this.code = code; }
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public int getCode() {
+    return code;
+  }
+
+  public void setCode(int code) {
+    this.code = code;
+  }
+
+public List<RoleDto> getRoles() {
+    return roles;
+}
+
+public void setRoles(List<RoleDto> roles) {
+    this.roles = roles;
+}
 }
