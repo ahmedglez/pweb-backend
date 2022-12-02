@@ -18,7 +18,7 @@ import cu.edu.cujae.pwebjsf.services.DriverServices;
 import cu.edu.cujae.pwebjsf.services.dto.DriverDto;
 
 @RestController
-@RequestMapping("/drivers")
+@RequestMapping("/api/v1/drivers")
 public class DriverController {
 
   @Autowired
