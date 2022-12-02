@@ -18,8 +18,6 @@ public class Car_Brand {
   @OneToMany(mappedBy = "brand")
   private List<Car_Model> models;
 
-  
-
 
   //	  Setter and Getters
 
