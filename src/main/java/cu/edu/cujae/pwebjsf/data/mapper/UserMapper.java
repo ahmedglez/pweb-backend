@@ -2,32 +2,28 @@ package cu.edu.cujae.pwebjsf.data.mapper;
 
 import cu.edu.cujae.pwebjsf.data.entity.User;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
+import java.util.List;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 
-import java.util.List;
-
 @Mapper(componentModel = "spring")
 public interface UserMapper {
+  @Mappings(
+    {
+      @org.mapstruct.Mapping(source = "code", target = "code"),
+      @org.mapstruct.Mapping(source = "username", target = "username"),
+      @org.mapstruct.Mapping(source = "password", target = "password"),
+      @org.mapstruct.Mapping(source = "email", target = "email"),
+      @org.mapstruct.Mapping(source = "roles", target = "roles"),
+    }
+  )
+  User toUser(UserDto userDto);
 
-    @Mappings(
-            {
-                    @org.mapstruct.Mapping(source = "code", target = "code"),
-                    @org.mapstruct.Mapping(source = "name", target = "name"),
-                    @org.mapstruct.Mapping(source = "password", target = "password"),
-                    @org.mapstruct.Mapping(target = "users", ignore = true),
+  List<User> toListUser(List<UserDto> users);
 
-            }
-    )
-    User toUser(UserDto userDto);
+  @InheritInverseConfiguration
+  UserDto toUserDto(User user);
 
-    List<User> toListUser(List<UserDto> users);
-
-    @InheritInverseConfiguration
-    UserDto toUserDto(User user);
-
-    List<UserDto> toListUserDto(List<User> users);
-
-
+  List<UserDto> toListUserDto(List<User> users);
 }

@@ -1,56 +1,75 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
+import java.util.Collection;
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
 
-    @Id
-    @Column(name = "cod_user")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer code;
+  @Id
+  @Column(name = "cod_user")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer code;
 
-    @Column(name = "name")
-    private String name;
+  @Column(name = "username")
+  private String username;
 
-    @Column(name = "password")
-    private String password;
+  @Column(name = "password")
+  private String password;
 
-    @OneToMany(mappedBy = "code")
-    private List<User> users;
+  @Column(name = "email")
+  private String email;
 
-
-    public Integer getCode() {
-        return code;
+  @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+  @JoinTable(
+    name = "users_roles",
+    joinColumns = {
+      @JoinColumn(name = "cod_user"),
+    },
+    inverseJoinColumns = {
+      @JoinColumn(name = "cod_role"),
     }
+  )
+  private Collection<Role> roles;
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
+  public Integer getCode() {
+    return code;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setCode(Integer code) {
+    this.code = code;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public List<User> getUsers() {
-        return users;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public Collection<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Collection<Role> roles) {
+    this.roles = roles;
+  }
 }

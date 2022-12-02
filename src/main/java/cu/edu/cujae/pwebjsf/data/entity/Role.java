@@ -1,44 +1,64 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
-import javax.persistence.*;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Collection;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
 public class Role {
 
-    @Id
-    @Column(name = "cod_role")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer code;
+  @Id
+  @Column(name = "cod_role")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer code;
 
-    @Column(name = "role")
-    private String role;
+  @Column(name = "role")
+  private String role;
 
-    @OneToMany(mappedBy = "code")
-    private List<Role> roles;
+  @Column(name = "description")
+  private String description;
 
-    public Integer getCode() {
-        return code;
-    }
+  @ManyToMany(mappedBy = "roles")
+  @JsonIgnore
+  private Collection<User> users;
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
+  public Integer getCode() {
+    return code;
+  }
 
-    public String getRole() {
-        return role;
-    }
+  public void setCode(Integer code) {
+    this.code = code;
+  }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+  public String getRole() {
+    return role;
+  }
 
-    public List<Role> getRoles() {
-        return roles;
-    }
+  public void setRole(String role) {
+    this.role = role;
+  }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public Collection<User> getUsers() {
+    return users;
+  }
+
+  public void setUsers(Collection<User> users) {
+    this.users = users;
+  }
 }
