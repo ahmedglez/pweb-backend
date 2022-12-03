@@ -23,6 +23,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     auth.userDetailsService(userDetailService);
   }
 
+  /* permitir que las request se hagan sin autenticacion (momentaneo) */
+  @Override
+  protected void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity http) throws Exception {
+    http.authorizeRequests().antMatchers("/**").permitAll();
+  }
+
+
+
+
   @Bean
   public PasswordEncoder passwordEncoder() {
     return NoOpPasswordEncoder.getInstance();
