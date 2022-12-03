@@ -23,6 +23,5 @@ public class UserServices {
 
     public UserDto isUser(UserDto user){return userRepository.exists(user);}
 
-    public UserDto getUserByUserName(String username){ return userRepository.findByUsername(username);}
 
 }
