@@ -36,7 +36,7 @@ public class DriverServices {
     driverRepository.delete(driverId);
   }
 
-  public DriverDto update(DriverDto driver, int driverId) {
-    return driverRepository.update(driver, driverId);
+  public DriverDto update(DriverDto driver) {
+    return driverRepository.update(driver);
   }
 }
