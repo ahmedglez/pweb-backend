@@ -27,15 +27,21 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<UserDto> save(@RequestBody UserDto user){
+    public ResponseEntity<String> create(@RequestBody UserDto user){
         userServices.save(user);
-        return new ResponseEntity<>( HttpStatus.OK);
+        return  ResponseEntity.ok("User created");
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<String> update(@RequestBody UserDto user){
+        userServices.save(user);
+        return ResponseEntity.ok("User updated");
     }
 
     @DeleteMapping("/{code}")
-    public ResponseEntity<UserDto> delete(@PathVariable("code") int code){
+    public ResponseEntity<String> delete(@PathVariable("code") int code){
         userServices.delete(code);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok("User deleted");
     }
 
     @PostMapping("/isUser")
