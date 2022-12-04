@@ -40,13 +40,13 @@ public class DriverController {
     );
   }
 
-  @GetMapping(value = "/{id}") // Get Driver by ID
-  public ResponseEntity<DriverDto> getDriver(@PathVariable("id") int id) {
+  @GetMapping(value = "/{code}") // Get Driver by ID
+  public ResponseEntity<DriverDto> getDriver(@PathVariable("code") int id) {
     DriverDto driver = driverSevices.getDriver(id);
     return new ResponseEntity<>(driver, HttpStatus.OK);
   }
 
-  @GetMapping(value = "ci/{ci}") // Get Driver by CI
+  @GetMapping(value = "/ci/{ci}") // Get Driver by CI
   public ResponseEntity<DriverDto> getDriverByCI(
     @PathVariable("ci") String ci
   ) {
@@ -54,24 +54,23 @@ public class DriverController {
     return new ResponseEntity<>(driver, HttpStatus.OK);
   }
 
-  @PostMapping("/save") // Create Driver
+  @PostMapping("/") // Create Driver
   public ResponseEntity<DriverDto> save(@RequestBody DriverDto driverDto) {
     driverSevices.save(driverDto);
     return new ResponseEntity<>(driverDto, HttpStatus.CREATED);
   }
 
-  @PutMapping("/update/{id}") // Update Driver
+  @PutMapping("/") // Update Driver
   public ResponseEntity<DriverDto> update(
-    @PathVariable("id") int id,
     @RequestBody DriverDto driverDto
   ) {
-    driverSevices.update(driverDto, id);
+    driverSevices.update(driverDto);
     return new ResponseEntity<>(driverDto, HttpStatus.OK);
   }
  
 
-  @DeleteMapping("/delete/{id}") //Delete Driver
-  public ResponseEntity<DriverDto> delete(@PathVariable("id") int id) {
+  @DeleteMapping("/{code}") //Delete Driver
+  public ResponseEntity<DriverDto> delete(@PathVariable("code") int id) {
     driverSevices.delete(id);
     return new ResponseEntity<DriverDto>(HttpStatus.OK);
   }

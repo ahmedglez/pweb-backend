@@ -26,13 +26,13 @@ public class UserController {
         return new ResponseEntity<>(userServices.getById(code),HttpStatus.OK);
     }
 
-    @PostMapping("/save")
+    @PostMapping("/")
     public ResponseEntity<UserDto> save(@RequestBody UserDto user){
         userServices.save(user);
         return new ResponseEntity<>( HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{code}")
+    @DeleteMapping("/{code}")
     public ResponseEntity<UserDto> delete(@PathVariable("code") int code){
         userServices.delete(code);
         return new ResponseEntity<>(HttpStatus.OK);
