@@ -23,5 +23,7 @@ public class UserServices {
 
     public UserDto isUser(UserDto user){return userRepository.exists(user);}
 
+    public UserDto login(UserDto user){return userRepository.login(user);}
+
 
 }

@@ -1,7 +1,8 @@
 package cu.edu.cujae.pwebjsf.controllers;
 
+import cu.edu.cujae.pwebjsf.services.DriverServices;
+import cu.edu.cujae.pwebjsf.services.dto.DriverDto;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import cu.edu.cujae.pwebjsf.services.DriverServices;
-import cu.edu.cujae.pwebjsf.services.dto.DriverDto;
 
 @RestController
 @RequestMapping("/api/v1/drivers")
@@ -61,19 +59,14 @@ public class DriverController {
   }
 
   @PutMapping("/") // Update Driver
-  public ResponseEntity<DriverDto> update(
-    @RequestBody DriverDto driverDto
-  ) {
+  public ResponseEntity<DriverDto> update(@RequestBody DriverDto driverDto) {
     driverSevices.update(driverDto);
     return new ResponseEntity<>(driverDto, HttpStatus.OK);
   }
- 
 
   @DeleteMapping("/{code}") //Delete Driver
-  public ResponseEntity<DriverDto> delete(@PathVariable("code") int id) {
-    driverSevices.delete(id);
+  public ResponseEntity<DriverDto> delete(@PathVariable("code") String ci) {
+    driverSevices.delete(ci);
     return new ResponseEntity<DriverDto>(HttpStatus.OK);
   }
-  
-
 }
