@@ -11,8 +11,8 @@ public interface ContractCrudRepository extends CrudRepository<Contract, Integer
 
     Contract getByCode(Integer code);
 
-    List<Contract> getContractByCodeCar(Integer codeCar);
+    List<Contract> getContractByCarCode(Integer carCode);
 
-    List<Contract> getContractByCodeTourist(Integer codeTourist);
+    List<Contract> getContractByTouristCode(Integer touristCode);
 
 }

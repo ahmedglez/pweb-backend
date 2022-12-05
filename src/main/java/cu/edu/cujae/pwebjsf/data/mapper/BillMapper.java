@@ -13,10 +13,7 @@ public interface BillMapper {
     {
       @org.mapstruct.Mapping(source = "code", target = "code"),
       @org.mapstruct.Mapping(source = "amount", target = "amount"),
-      @org.mapstruct.Mapping(
-        source = "specialAmount",
-        target = "specialAmount"
-      ),
+      @org.mapstruct.Mapping(source = "specialAmount", target = "specialAmount"),
       @org.mapstruct.Mapping(target = "contracts", ignore = true),
     }
   )
