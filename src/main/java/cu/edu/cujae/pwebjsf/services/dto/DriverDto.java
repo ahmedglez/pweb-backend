@@ -8,15 +8,10 @@ public class DriverDto {
   private String lastName;
   private String address;
   private DriversCategoriesDto category;
-  
 
-
-  
   public String getName() {
     return name;
   }
-
-  
 
   public void setName(String name) {
     this.name = name;
@@ -54,13 +49,9 @@ public class DriverDto {
     this.code = code;
   }
 
-
-
   public String getCi() {
     return ci;
   }
-
-
 
   public void setCi(String ci) {
     this.ci = ci;

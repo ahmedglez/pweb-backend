@@ -18,19 +18,15 @@ public class CarModelServices {
     return carModelRepository.getAll();
   }
 
-  public CarModelDto getModelById(int modelId) {
-    return carModelRepository.getModelById(modelId);
+  public CarModelDto getByCode(int modelId) {
+    return carModelRepository.getByCode(modelId);
   }
 
-  public void createModel(CarModelDto modelDto) {
-    carModelRepository.createModel(modelDto);
+  public void save(CarModelDto modelDto) {
+    carModelRepository.save(modelDto);
   }
 
-  public void updateModel(CarModelDto modelDto) {
-    carModelRepository.updateModel(modelDto);
-  }
-
-  public void deleteModel(int modelId) {
-    carModelRepository.deleteModel(modelId);
+  public void delete(int modelId) {
+    carModelRepository.delete(modelId);
   }
 }

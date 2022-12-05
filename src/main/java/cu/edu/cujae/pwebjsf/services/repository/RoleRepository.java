@@ -22,7 +22,7 @@ public class RoleRepository {
     return roleMapper.toListRoleDto(roles);
   }
 
-  public RoleDto getById(Integer code) {
+  public RoleDto getByCode(Integer code) {
     return roleMapper.toRoleDto(roleCrudRepository.findByCode(code));
   }
 

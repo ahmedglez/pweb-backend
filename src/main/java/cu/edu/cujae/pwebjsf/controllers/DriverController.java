@@ -2,6 +2,8 @@ package cu.edu.cujae.pwebjsf.controllers;
 
 import java.util.List;
 
+import cu.edu.cujae.pwebjsf.services.DriverCategoryServices;
+import cu.edu.cujae.pwebjsf.services.dto.DriversCategoriesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +24,19 @@ import cu.edu.cujae.pwebjsf.services.dto.DriverDto;
 public class DriverController {
 
   @Autowired
-  private DriverServices driverSevices;
+  private DriverServices driverServices;
+
+  @Autowired
+  private DriverCategoryServices driverCategoryServices;
 
   @GetMapping("/all") //Get All Drivers
   public ResponseEntity<List<DriverDto>> getAll() {
-    return new ResponseEntity<>(driverSevices.getAll(), HttpStatus.OK);
+    return new ResponseEntity<>(driverServices.getAll(), HttpStatus.OK);
+  }
+
+  @GetMapping("/categories/all") //Get All Drivers
+  public ResponseEntity<List<DriversCategoriesDto>> getAllCategories() {
+    return new ResponseEntity<>(driverCategoryServices.getAll(), HttpStatus.OK);
   }
 
   @GetMapping("/getByCategory/{codeCategory}") // Get Drivers by Category
@@ -35,14 +45,19 @@ public class DriverController {
   ) {
     System.out.println("codeCategory: " + codeCategory);
     return new ResponseEntity<>(
-      driverSevices.getByCategory(codeCategory),
+      driverServices.getByCategory(codeCategory),
       HttpStatus.OK
     );
   }
 
+  @GetMapping(value = "/categories/{code}") // Get Categories by code
+  public ResponseEntity<DriversCategoriesDto> getCategoryByCode(@PathVariable("code") int code) {
+    return new ResponseEntity<>(driverCategoryServices.getByCode(code), HttpStatus.OK);
+  }
+
   @GetMapping(value = "/{code}") // Get Driver by ID
   public ResponseEntity<DriverDto> getDriver(@PathVariable("code") int id) {
-    DriverDto driver = driverSevices.getDriver(id);
+    DriverDto driver = driverServices.getDriver(id);
     return new ResponseEntity<>(driver, HttpStatus.OK);
   }
 
@@ -50,13 +65,13 @@ public class DriverController {
   public ResponseEntity<DriverDto> getDriverByCI(
     @PathVariable("ci") String ci
   ) {
-    DriverDto driver = driverSevices.getDriverByCi(ci);
+    DriverDto driver = driverServices.getDriverByCi(ci);
     return new ResponseEntity<>(driver, HttpStatus.OK);
   }
 
   @PostMapping("/") // Create Driver
   public ResponseEntity<DriverDto> save(@RequestBody DriverDto driverDto) {
-    driverSevices.save(driverDto);
+    driverServices.save(driverDto);
     return new ResponseEntity<>(driverDto, HttpStatus.CREATED);
   }
 
@@ -64,14 +79,14 @@ public class DriverController {
   public ResponseEntity<DriverDto> update(
     @RequestBody DriverDto driverDto
   ) {
-    driverSevices.update(driverDto);
+    driverServices.update(driverDto);
     return new ResponseEntity<>(driverDto, HttpStatus.OK);
   }
  
 
   @DeleteMapping("/{code}") //Delete Driver
   public ResponseEntity<DriverDto> delete(@PathVariable("code") int id) {
-    driverSevices.delete(id);
+    driverServices.delete(id);
     return new ResponseEntity<DriverDto>(HttpStatus.OK);
   }
   

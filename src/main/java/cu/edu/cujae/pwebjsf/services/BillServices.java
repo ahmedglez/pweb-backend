@@ -16,19 +16,15 @@ public class BillServices {
     return billRepository.getAll();
   }
 
-  public BillDto getBillById(int billId) {
-    return billRepository.getBillById(billId);
+  public BillDto getByCode(int billId) {
+    return billRepository.getByCode(billId);
   }
 
-  public void createBill(BillDto billDto) {
-    billRepository.createBill(billDto);
+  public void save(BillDto billDto) {
+    billRepository.save(billDto);
   }
 
-  public void updateBill(BillDto billDto) {
-    billRepository.updateBill(billDto);
-  }
-
-  public void deleteBill(int billId) {
-    billRepository.deleteBill(billId);
+  public void delete(int billId) {
+    billRepository.delete(billId);
   }
 }

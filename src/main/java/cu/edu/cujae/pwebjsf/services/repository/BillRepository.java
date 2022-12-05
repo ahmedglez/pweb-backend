@@ -22,22 +22,17 @@ public class BillRepository {
     return mapper.toBillDtoList(bills);
   }
 
-  public BillDto getBillById(int billId) {
+  public BillDto getByCode(int billId) {
     Bill bill = billCrudRepository.findById(billId);
     return mapper.toBillDto(bill);
   }
 
-  public void createBill(BillDto billDto) {
+  public void save(BillDto billDto) {
     Bill bill = mapper.toBill(billDto);
     billCrudRepository.save(bill);
   }
 
-  public void updateBill(BillDto billDto) {
-    Bill bill = mapper.toBill(billDto);
-    billCrudRepository.save(bill);
-  }
-
-  public void deleteBill(int billId) {
+  public void delete(int billId) {
     billCrudRepository.deleteById(billId);
   }
 }

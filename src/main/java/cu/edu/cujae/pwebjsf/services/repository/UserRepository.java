@@ -24,7 +24,7 @@ public class UserRepository {
     return userMapper.toListUserDto(users);
   }
 
-  public UserDto getById(Integer code) {
+  public UserDto getByCode(Integer code) {
     return userMapper.toUserDto(userCrudRepository.findByCode(code));
   }
 

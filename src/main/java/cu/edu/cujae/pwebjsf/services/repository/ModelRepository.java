@@ -23,22 +23,22 @@ public class ModelRepository {
     return models;
   }
 
-  public CarModelDto getModelById(int modelId) {
+  public CarModelDto getByCode(int modelId) {
     CarModelDto model = carModelMapper.toCarModelDto(
       modelCrudRepository.findById(modelId)
     );
     return model;
   }
 
-  public void createModel(CarModelDto modelDto) {
+  public void create(CarModelDto modelDto) {
     modelCrudRepository.save(carModelMapper.toCarModel(modelDto));
   }
 
-  public void updateModel(CarModelDto modelDto) {
+  public void save(CarModelDto modelDto) {
     modelCrudRepository.save(carModelMapper.toCarModel(modelDto));
   }
 
-  public void deleteModel(int modelId) {
+  public void delete(int modelId) {
     modelCrudRepository.deleteById(modelId);
   }
 }

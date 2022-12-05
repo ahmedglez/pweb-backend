@@ -31,7 +31,7 @@ public class DriverRepository {
     return Optional.ofNullable(driverDtos);
   }
 
-  public Optional<DriverDto> getbyID(int driverId) {
+  public Optional<DriverDto> getByCode(int driverId) {
     Driver driver = driverCrudRepository.findById(driverId);
     DriverDto driverDto = mapper.toDriverDto(driver);
     return Optional.ofNullable(driverDto);

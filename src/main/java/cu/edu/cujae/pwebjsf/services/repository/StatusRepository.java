@@ -22,5 +22,11 @@ public class StatusRepository {
 	        List<CarStatusDto> status = carStatusMapper.toCarStatusDtoList(statusCrudRepository.findAll());
 	        return status;
 	    }
+
+	    public CarStatusDto getByCode(int code){
+	    	return carStatusMapper.toCarStatusDto(statusCrudRepository.getByCode(code));
+		}
+
+
 	
 }

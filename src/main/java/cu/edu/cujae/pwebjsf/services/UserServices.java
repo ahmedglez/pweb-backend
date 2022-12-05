@@ -15,7 +15,7 @@ public class UserServices {
 
     public List<UserDto> getAll(){return userRepository.getAll();}
 
-    public UserDto getById(Integer code){return userRepository.getById(code);}
+    public UserDto getById(Integer code){return userRepository.getByCode(code);}
 
     public void save(UserDto user){userRepository.save(user);}
 
