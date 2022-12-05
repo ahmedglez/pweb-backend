@@ -49,8 +49,8 @@ public class DriverRepository {
     return Optional.ofNullable(driverDto);
   }
 
-  public void delete(int driverId) {
-    driverCrudRepository.deleteById(driverId);
+  public void delete(int code) {
+    driverCrudRepository.deleteById(code);
   }
 
   public DriverDto update(DriverDto driver) {

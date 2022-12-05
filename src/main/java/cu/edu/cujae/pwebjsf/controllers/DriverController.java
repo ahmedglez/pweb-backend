@@ -85,8 +85,8 @@ public class DriverController {
  
 
   @DeleteMapping("/{code}") //Delete Driver
-  public ResponseEntity<DriverDto> delete(@PathVariable("code") int id) {
-    driverServices.delete(id);
+  public ResponseEntity<DriverDto> delete(@PathVariable("code") int code) {
+    driverServices.delete(code);
     return new ResponseEntity<DriverDto>(HttpStatus.OK);
   }
   
