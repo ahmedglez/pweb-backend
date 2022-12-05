@@ -1,17 +1,10 @@
 package cu.edu.cujae.pwebjsf.services.dto;
 
-import java.util.List;
-
 public class PaymentsDto {
 
   private int code;
   private String payment;
-  private List<ContractDto> contracts;
 
-
-  public String getPaymentText() {
-    return payment;
-  }
 
   public void setPayment(String payment) {
     this.payment = payment;
@@ -25,18 +18,9 @@ public class PaymentsDto {
     this.code = code;
   }
 
-public String getPayment() {
+  public String getPayment() {
     return payment;
 }
-
-public List<ContractDto> getContracts() {
-    return contracts;
-}
-
-public void setContracts(List<ContractDto> contracts) {
-    this.contracts = contracts;
-}
-
   
 
 

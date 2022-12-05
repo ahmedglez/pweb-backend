@@ -1,5 +1,7 @@
 package cu.edu.cujae.pwebjsf.data.entity;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -13,19 +15,39 @@ public class Contract {
     private int code;
 
     @Column(name="cod_tourist")
-    private int codeTourist;
+    private int touristCode;
+
+    @ManyToOne
+    @JoinColumn(name = "cod_tourist", insertable = false, updatable = false)
+    private Tourist tourist;
 
     @Column(name = "cod_car")
-    private int codeCar;
+    private int carCode;
+
+    @ManyToOne
+    @JoinColumn(name = "cod_car", insertable = false, updatable = false)
+    private Car car;
 
     @Column(name = "cod_driver")
-    private Integer codeDriver;
+    private Integer driverCode;
+
+    @ManyToOne
+    @JoinColumn(name = "cod_driver", insertable = false, updatable = false)
+    private Driver driver;
 
     @Column(name = "cod_bill")
-    private int codeBill;
+    private int billCode;
+
+    @ManyToOne
+    @JoinColumn(name = "cod_bill", insertable = false, updatable = false)
+    private Bill bill;
 
     @Column(name = "cod_payment")
-    private int codePayment;
+    private int paymentCode;
+
+    @ManyToOne
+    @JoinColumn(name = "cod_payment", insertable = false, updatable = false)
+    private Payment payment;
 
     @Column(name = "date_start")
     private LocalDate startingDate;
@@ -39,25 +61,7 @@ public class Contract {
     @Column(name = "total_amount")
     private int totalAmount;
 
-    @ManyToOne
-    @JoinColumn(name = "cod_tourist", insertable = false, updatable = false)
-    private Tourist tourist;
 
-    @ManyToOne
-    @JoinColumn(name = "cod_car", insertable = false, updatable = false)
-    private Car car;
-
-    @ManyToOne
-    @JoinColumn(name = "cod_driver", insertable = false, updatable = false)
-    private Driver driver;
-
-    @ManyToOne
-    @JoinColumn(name = "cod_bill", insertable = false, updatable = false)
-    private Bill bill;
-
-    @ManyToOne
-    @JoinColumn(name = "cod_payment", insertable = false, updatable = false)
-    private Payment payment;
 
     public int getCode() {
         return code;
@@ -65,54 +69,6 @@ public class Contract {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public int getCodeTourist() {
-        return codeTourist;
-    }
-
-    public void setCodeTourist(int codeTourist) {
-        this.codeTourist = codeTourist;
-    }
-
-    public int getCodeCar() {
-        return codeCar;
-    }
-
-    public void setCodeCar(int codeCar) {
-        this.codeCar = codeCar;
-    }
-
-    public int getCodeDriver() {
-        return codeDriver;
-    }
-
-    public void setCodeDriver(int codeDriver) {
-        this.codeDriver = codeDriver;
-    }
-
-    public int getCodeBill() {
-        return codeBill;
-    }
-
-    public void setCodeBill(int codeBill) {
-        this.codeBill = codeBill;
-    }
-
-    public int getCodePayment() {
-        return codePayment;
-    }
-
-    public void setCodePayment(int codePayment) {
-        this.codePayment = codePayment;
-    }
-
-    public LocalDate getInitDate() {
-        return startingDate;
-    }
-
-    public void setInitDate(LocalDate initDate) {
-        this.startingDate = initDate;
     }
 
     public LocalDate getFinalDate() {
@@ -137,10 +93,6 @@ public class Contract {
 
     public void setTotalAmount(int totalAmount) {
         this.totalAmount = totalAmount;
-    }
-
-    public void setCodeDriver(Integer codeDriver) {
-        this.codeDriver = codeDriver;
     }
 
     public LocalDate getStartingDate() {
@@ -189,5 +141,45 @@ public class Contract {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public int getTouristCode() {
+        return touristCode;
+    }
+
+    public void setTouristCode(int touristCode) {
+        this.touristCode = touristCode;
+    }
+
+    public int getCarCode() {
+        return carCode;
+    }
+
+    public void setCarCode(int carCode) {
+        this.carCode = carCode;
+    }
+
+    public Integer getDriverCode() {
+        return driverCode;
+    }
+
+    public void setDriverCode(Integer driverCode) {
+        this.driverCode = driverCode;
+    }
+
+    public int getBillCode() {
+        return billCode;
+    }
+
+    public void setBillCode(int billCode) {
+        this.billCode = billCode;
+    }
+
+    public int getPaymentCode() {
+        return paymentCode;
+    }
+
+    public void setPaymentCode(int paymentCode) {
+        this.paymentCode = paymentCode;
     }
 }
