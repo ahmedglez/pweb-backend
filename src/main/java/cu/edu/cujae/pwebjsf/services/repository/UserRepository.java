@@ -1,14 +1,12 @@
 package cu.edu.cujae.pwebjsf.services.repository;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import cu.edu.cujae.pwebjsf.data.crud.UserCrudRepository;
 import cu.edu.cujae.pwebjsf.data.entity.User;
 import cu.edu.cujae.pwebjsf.data.mapper.UserMapper;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepository {
@@ -35,6 +33,15 @@ public class UserRepository {
 
   public void delete(Integer code) {
     userCrudRepository.deleteById(code);
+  }
+
+  public UserDto login(UserDto user) {
+    User userEntity = userMapper.toUser(user);
+    User userLogin = userCrudRepository.findByUsernameAndPassword(
+      userEntity.getUsername(),
+      userEntity.getPassword()
+    );
+    return userMapper.toUserDto(userLogin);
   }
 
   public UserDto exists(UserDto userDto) {
