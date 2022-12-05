@@ -18,7 +18,7 @@ public class RoleServices {
   }
 
   public RoleDto getById(Integer code) {
-    return roleRepository.getById(code);
+    return roleRepository.getByCode(code);
   }
 
   public void save(RoleDto role) {

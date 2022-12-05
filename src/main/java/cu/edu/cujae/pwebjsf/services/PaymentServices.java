@@ -14,23 +14,19 @@ public class PaymentServices {
     @Autowired
     private PaymentRepository paymentRepository;
 
-    public void createPayment(PaymentsDto payment) {
-        paymentRepository.createPayment(payment);
+    public void save(PaymentsDto payment) {
+        paymentRepository.save(payment);
     }
 
-    public void updatePayment(PaymentsDto payment) {
-        paymentRepository.updatePayment(payment);
+    public void delete(int id) {
+        paymentRepository.delete(id);
     }
 
-    public void deletePayment(int id) {
-        paymentRepository.deletePayment(id);
+    public PaymentsDto getByCode(int id) {
+        return paymentRepository.getByCode(id);
     }
 
-    public PaymentsDto getPaymentById(int id) {
-        return paymentRepository.getPaymentById(id);
-    }
-
-    public List<PaymentsDto> getPayments() {
+    public List<PaymentsDto> getAll() {
         return paymentRepository.getPayments();
     }
 

@@ -1,7 +1,6 @@
 package cu.edu.cujae.pwebjsf.services;
 
 import cu.edu.cujae.pwebjsf.services.dto.CarDto;
-import cu.edu.cujae.pwebjsf.services.dto.TouristDto;
 import cu.edu.cujae.pwebjsf.services.repository.CarRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class CarServices {
   }
 
   public CarDto getById(int code) {
-    return carRepository.getById(code).get();
+    return carRepository.getByCode(code).get();
   }
 
   public void delete(int code) {

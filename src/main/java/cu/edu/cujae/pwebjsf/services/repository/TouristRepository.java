@@ -25,7 +25,7 @@ public class TouristRepository {
         return mapper.toTouristDtoList(tourists);
     }
 
-    public Optional<TouristDto> getById(int code){
+    public Optional<TouristDto> getByCode(int code){
         Tourist tourist = touristCrudRepository.findById(code);
         return Optional.ofNullable(mapper.toTouristDto(tourist));
     }

@@ -20,19 +20,16 @@ public class PaymentRepository {
     return paymentMapper.toPaymentsDtoList(paymentCrudRepository.findAll());
   }
 
-  public PaymentsDto getPaymentById(int id) {
+  public PaymentsDto getByCode(int id) {
     return paymentMapper.toPaymentsDto(paymentCrudRepository.findById(id));
   }
 
-  public void deletePayment(int id) {
+  public void delete(int id) {
     paymentCrudRepository.deleteById(id);
   }
 
-  public void createPayment(PaymentsDto payment) {
+  public void save(PaymentsDto payment) {
     paymentCrudRepository.save(paymentMapper.toPayment(payment));
   }
 
-  public void updatePayment(PaymentsDto payment) {
-    paymentCrudRepository.save(paymentMapper.toPayment(payment));
-  }
 }
