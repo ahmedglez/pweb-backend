@@ -21,7 +21,7 @@ public class DriverServices {
   }
 
   public DriverDto getDriver(int driverId) {
-    return driverRepository.getbyID(driverId).get();
+    return driverRepository.getByCode(driverId).get();
   }
 
   public DriverDto getDriverByCi(String ci) {
@@ -32,8 +32,8 @@ public class DriverServices {
     return driverRepository.save(driver);
   }
 
-  public void delete(String ci) {
-    driverRepository.delete(ci);
+  public void delete(int code) {
+    driverRepository.delete(code);
   }
 
   public DriverDto update(DriverDto driver) {

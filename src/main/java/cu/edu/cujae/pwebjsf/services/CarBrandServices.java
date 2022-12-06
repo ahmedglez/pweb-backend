@@ -16,19 +16,16 @@ public class CarBrandServices {
     return carBrandRepository.getAll();
   }
 
-  public BrandDto getCarBrandById(int carBrandId) {
-    return carBrandRepository.getBrandById(carBrandId);
+  public BrandDto getByCode(int carBrandId) {
+    return carBrandRepository.getByCode(carBrandId);
   }
 
-  public void createCarBrand(BrandDto BrandDto) {
-    carBrandRepository.createBrand(BrandDto);
+  public void save(BrandDto BrandDto) {
+    carBrandRepository.save(BrandDto);
   }
 
-  public void updateCarBrand(BrandDto BrandDto) {
-    carBrandRepository.updateBrand(BrandDto);
-  }
 
-  public void deleteCarBrand(int carBrandId) {
-    carBrandRepository.deleteBrand(carBrandId);
+  public void delete(int carBrandId) {
+    carBrandRepository.delete(carBrandId);
   }
 }

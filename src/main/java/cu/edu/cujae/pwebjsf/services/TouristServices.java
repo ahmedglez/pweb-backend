@@ -15,7 +15,7 @@ public class TouristServices {
 
     public List<TouristDto> getAll(){return touristRepository.getAll();}
 
-    public TouristDto getById(int code){ return touristRepository.getById(code).get();}
+    public TouristDto getById(int code){ return touristRepository.getByCode(code).get();}
 
     public void delete(int code){touristRepository.delete(code);}
 

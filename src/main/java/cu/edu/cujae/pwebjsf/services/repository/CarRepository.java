@@ -23,7 +23,7 @@ public class CarRepository {
     return mapper.toCarDtoList(cars);
   }
 
-  public Optional<CarDto> getById(int code) {
+  public Optional<CarDto> getByCode(int code) {
     Car car = carCrudRepository.findById(code);
     return Optional.ofNullable(mapper.toCarDto(car));
   }

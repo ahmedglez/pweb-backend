@@ -22,5 +22,22 @@ public class StatusRepository {
 	        List<CarStatusDto> status = carStatusMapper.toCarStatusDtoList(statusCrudRepository.findAll());
 	        return status;
 	    }
-	
+
+
+	public CarStatusDto getStatusById(int statusId) {
+		CarStatusDto status = carStatusMapper.toCarStatusDto(
+				statusCrudRepository.findById(statusId)
+		);
+		return status;
+	}
+
+	public void save(CarStatusDto statusDto) {
+		statusCrudRepository.save(carStatusMapper.toCarStatus(statusDto));
+	}
+
+
+	public void delete(int statusId) {
+		statusCrudRepository.deleteById(statusId);
+	}
+
 }
