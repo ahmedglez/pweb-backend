@@ -4,7 +4,7 @@ import cu.edu.cujae.pwebjsf.data.entity.Car_Brand;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
-public interface Car_Brand_CrudRepository
+public interface CarBrandCrudRepository
   extends CrudRepository<Car_Brand, Integer> {
   List<Car_Brand> findAll();
 

@@ -1,6 +1,6 @@
 package cu.edu.cujae.pwebjsf.services.repository;
 
-import cu.edu.cujae.pwebjsf.data.crud.Car_Brand_CrudRepository;
+import cu.edu.cujae.pwebjsf.data.crud.CarBrandCrudRepository;
 import cu.edu.cujae.pwebjsf.data.entity.Car_Brand;
 import cu.edu.cujae.pwebjsf.data.mapper.CarBrandMapper;
 import cu.edu.cujae.pwebjsf.services.dto.BrandDto;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public class BrandRepository {
 
   @Autowired
-  private Car_Brand_CrudRepository brandCrudRepository;
+  private CarBrandCrudRepository brandCrudRepository;
 
   @Autowired
   private CarBrandMapper mapper;

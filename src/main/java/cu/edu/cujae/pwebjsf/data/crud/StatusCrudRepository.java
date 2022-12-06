@@ -9,5 +9,7 @@ import cu.edu.cujae.pwebjsf.data.entity.Car_Status;
 public interface StatusCrudRepository extends CrudRepository<Car_Status, Integer>{
 
 	 List<Car_Status> findAll();
+	 
+	 Car_Status findById(int code);
 	
 }
