@@ -8,9 +8,7 @@ import cu.edu.cujae.pwebjsf.services.dto.BrandDto;
 import cu.edu.cujae.pwebjsf.services.dto.CarDto;
 import cu.edu.cujae.pwebjsf.services.dto.CarModelDto;
 import cu.edu.cujae.pwebjsf.services.dto.CarStatusDto;
-import cu.edu.cujae.pwebjsf.services.repository.BrandRepository;
-import cu.edu.cujae.pwebjsf.services.repository.ModelRepository;
-import cu.edu.cujae.pwebjsf.services.repository.StatusRepository;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CarController {
 
   @Autowired
-  private CarServices carSevices;
+  private CarServices carServices;
   
   @Autowired
   private CarModelServices modelServices;
@@ -40,42 +38,33 @@ public class CarController {
   @Autowired
   private CarStatusService statusServices;
 
-  @Autowired
-  private ModelRepository modelRepository;
-
-  @Autowired
-  private StatusRepository statusRepository;
-  
-  @Autowired
-  private BrandRepository brandRepository;
-
   @GetMapping("/all")
   public ResponseEntity<List<CarDto>> getAll() {
-    return new ResponseEntity<>(carSevices.getAll(), HttpStatus.OK);
+    return new ResponseEntity<>(carServices.getAll(), HttpStatus.OK);
   }
 
   //Get all models
   @GetMapping("/models/all")
   public ResponseEntity<List<CarModelDto>> getAllModels() {
-    return ResponseEntity.ok(modelRepository.getAll());
+    return ResponseEntity.ok(modelServices.getAll());
   }
 
   //Get all status
   @GetMapping("/status/all")
   public ResponseEntity<List<CarStatusDto>> getAllStatus() {
-    return ResponseEntity.ok(statusRepository.getAll());
+    return ResponseEntity.ok(statusServices.getAll());
   }
   
 
   //Get All Brands
-  @GetMapping("/models/brands/all")
+  @GetMapping("/brands/all")
   public ResponseEntity<List<BrandDto>> getAllBrands() {
-    return ResponseEntity.ok(brandRepository.getAll());
+    return ResponseEntity.ok(brandServices.getAll());
   }
 
   @GetMapping("/{code}")
   public ResponseEntity<CarDto> getById(@PathVariable("code") int code) {
-    return new ResponseEntity<>(carSevices.getById(code), HttpStatus.OK);
+    return new ResponseEntity<>(carServices.getById(code), HttpStatus.OK);
   }
 
   //Get Cars by Model
@@ -83,7 +72,7 @@ public class CarController {
   public ResponseEntity<List<CarDto>> getByModel(
     @PathVariable("code") int code
   ) {
-    return new ResponseEntity<>(carSevices.getByModel(code), HttpStatus.OK);
+    return new ResponseEntity<>(carServices.getByModel(code), HttpStatus.OK);
   }
 
   //Get Cars by Status
@@ -91,69 +80,69 @@ public class CarController {
   public ResponseEntity<List<CarDto>> getByStatus(
     @PathVariable("code") int code
   ) {
-    return new ResponseEntity<>(carSevices.getByStatus(code), HttpStatus.OK);
+    return new ResponseEntity<>(carServices.getByStatus(code), HttpStatus.OK);
   }
 
   
   @PostMapping("/")
   public ResponseEntity<String> insert(@RequestBody CarDto carDto) {
-    carSevices.save(carDto);
+    carServices.save(carDto);
     return ResponseEntity.ok("Car inserted");
   }
 
   @PutMapping("/")
   public ResponseEntity<String> update(@RequestBody CarDto carDto) {
-    carSevices.save(carDto);
+    carServices.save(carDto);
     return ResponseEntity.ok("Car updated");
   }
 
   @DeleteMapping("/{code}")
   public ResponseEntity<String> delete(@PathVariable("code") Integer code) {
-    carSevices.delete(code);
+    carServices.delete(code);
     return ResponseEntity.ok("Car deleted");
   }
   
   //Model Endpoints
-  @GetMapping("/model/{code}")
+  @GetMapping("/models/{code}")
   public ResponseEntity<CarModelDto> getModelById(@PathVariable("code") int code) {
-    return new ResponseEntity<>(modelServices.getModelById(code), HttpStatus.OK);
+    return new ResponseEntity<>(modelServices.getByCode(code), HttpStatus.OK);
   }
-  @PostMapping("/model/")
+  @PostMapping("/models/")
   public ResponseEntity<String> insertModel(@RequestBody CarModelDto modelDto) {
-    modelServices.createModel(modelDto);
+    modelServices.save(modelDto);
     return ResponseEntity.ok("Model inserted");
   }
-  @PutMapping("/model/")
+  @PutMapping("/models/")
   public ResponseEntity<String> updateModel(@RequestBody CarModelDto modelDto) {
-	  modelServices.updateModel(modelDto);
+	  modelServices.save(modelDto);
     return ResponseEntity.ok("Model updated");
   }
 
-  @DeleteMapping("/model/{code}")
+  @DeleteMapping("/models/{code}")
   public ResponseEntity<String> deleteModel(@PathVariable("code") Integer code) {
-	 modelServices.deleteModel(code);
+	 modelServices.delete(code);
     return ResponseEntity.ok("Model deleted");
   }
   
 //Brand Endpoints
-  @GetMapping("/brand/{code}")
+  @GetMapping("/brands/{code}")
   public ResponseEntity<BrandDto> getBrandById(@PathVariable("code") int code) {
-    return new ResponseEntity<>(brandServices.getCarBrandById(code), HttpStatus.OK);
+    return new ResponseEntity<>(brandServices.getByCode(code), HttpStatus.OK);
   }
-  @PostMapping("/brand/")
+  @PostMapping("/brands/")
   public ResponseEntity<String> insertBrand(@RequestBody BrandDto brandDto) {
-    brandServices.createCarBrand(brandDto);
+    brandServices.save(brandDto);
     return ResponseEntity.ok("Brand inserted");
   }
-  @PutMapping("/brand/")
+  @PutMapping("/brands/")
   public ResponseEntity<String> updateBrand(@RequestBody BrandDto brandDto) {
-	  brandServices.updateCarBrand(brandDto);
+	  brandServices.save(brandDto);
     return ResponseEntity.ok("Brand updated");
   }
 
-  @DeleteMapping("/brand/{code}")
+  @DeleteMapping("/brands/{code}")
   public ResponseEntity<String> deleteBrand(@PathVariable("code") Integer code) {
-	  brandServices.deleteCarBrand(code);
+	  brandServices.delete(code);
     return ResponseEntity.ok("Brand deleted");
   }
   
@@ -164,18 +153,18 @@ public class CarController {
   }
   @PostMapping("/status/")
   public ResponseEntity<String> insertStatus(@RequestBody CarStatusDto brandDto) {
-	  statusServices.createStatus(brandDto);
+	  statusServices.save(brandDto);
     return ResponseEntity.ok("Status inserted");
   }
   @PutMapping("/status/")
   public ResponseEntity<String> updateStatus(@RequestBody CarStatusDto brandDto) {
-	  statusServices.updateStatus(brandDto);
+	  statusServices.save(brandDto);
     return ResponseEntity.ok("Status updated");
   }
 
   @DeleteMapping("/status/{code}")
   public ResponseEntity<String> deletestatus(@PathVariable("code") Integer code) {
-	  statusServices.deleteStatus(code);
+	  statusServices.delete(code);
     return ResponseEntity.ok("Status deleted");
   }
   
