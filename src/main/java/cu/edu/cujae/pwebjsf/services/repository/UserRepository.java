@@ -63,4 +63,9 @@ public class UserRepository {
     User user = userCrudRepository.findByUsername(username);
     return userMapper.toUserDto(user);
   }
+
+  public UserDto getUserByEmail(String email) {
+    User user = userCrudRepository.findByEmail(email);
+    return userMapper.toUserDto(user);
+  }
 }
