@@ -16,6 +16,9 @@ public interface UserMapper {
       @org.mapstruct.Mapping(source = "password", target = "password"),
       @org.mapstruct.Mapping(source = "email", target = "email"),
       @org.mapstruct.Mapping(source = "roles", target = "roles"),
+      @org.mapstruct.Mapping(source = "recoverCode", target = "recoverCode"),
+      @org.mapstruct.Mapping(source = "firstName", target = "firstName"),
+      @org.mapstruct.Mapping(source = "lastName", target = "lastName"),
     }
   )
   User toUser(UserDto userDto);
