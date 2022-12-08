@@ -1,10 +1,12 @@
 package cu.edu.cujae.pwebjsf.services;
 
 import cu.edu.cujae.pwebjsf.services.dto.ContractDto;
+import cu.edu.cujae.pwebjsf.services.dto.ContractStringDto;
 import cu.edu.cujae.pwebjsf.services.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Service
@@ -21,11 +23,13 @@ public class ContractServices {
         return contractRepository.getByCode(code);
     }
 
-    public void save(ContractDto contractDto){
+    public void save(ContractStringDto contractDto) throws ParseException {
         contractRepository.save(contractDto);
     }
 
     public void delete(int code){
         contractRepository.delete(code);
     }
+
+
 }
