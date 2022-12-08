@@ -21,6 +21,9 @@ public class UserController {
         return new ResponseEntity<>(userServices.getAll(), HttpStatus.OK);
     }
 
+
+
+
     @GetMapping("/{code}")
     public ResponseEntity<UserDto> getById(@PathVariable("code") int code){
         return new ResponseEntity<>(userServices.getById(code),HttpStatus.OK);
