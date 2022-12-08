@@ -1,5 +1,6 @@
 package cu.edu.cujae.pwebjsf.config;
 
+import cu.edu.cujae.pwebjsf.middlewares.JwtFilterRequest;
 import cu.edu.cujae.pwebjsf.services.CustomUserDetailsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -16,6 +19,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private CustomUserDetailsServices userDetailsService;
+
+  @Autowired
+  private JwtFilterRequest jwtFilterRequest;
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -31,7 +37,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers("/**/login")
       .permitAll()
       .anyRequest()
-      .authenticated();
+      .authenticated()
+      .and()
+      .sessionManagement()
+      .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+    http.addFilterBefore(
+      jwtFilterRequest,
+      UsernamePasswordAuthenticationFilter.class
+    );
+    
   }
 
   @Override
