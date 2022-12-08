@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JWTUtil {
 
-  private static final String KEY = "secretKEY";
+  private static final String KEY = "cububcur3bvs5f25536hh342h7hd7t663gdtg3gbn3ik98";
 
   public String generateToken(UserDetails userDetails) {
     return Jwts

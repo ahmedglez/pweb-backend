@@ -55,7 +55,7 @@ public class AuthController {
         HttpStatus.OK
       );
     } catch (BadCredentialsException e) {
-      return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
   }
 
