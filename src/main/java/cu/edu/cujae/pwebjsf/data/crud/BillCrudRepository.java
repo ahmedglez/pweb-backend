@@ -9,7 +9,5 @@ public interface BillCrudRepository extends CrudRepository<Bill, Integer> {
 
   Bill findById(int billId);
 
-  void deleteById(int billId);
 
-  Bill save(Bill bill);
 }

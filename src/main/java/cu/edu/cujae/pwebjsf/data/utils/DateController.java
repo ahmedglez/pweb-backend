@@ -25,6 +25,7 @@ public class DateController {
     public static LocalDate getLocalDateByString(String date) throws ParseException {
         String[] part = date.split(" ");
         String newDate = part[2] + "-"+ part[1] +"-"+ part[5];
+        System.out.println(date);
         System.out.println(newDate);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-yyyy", Locale.US);
         return LocalDate.parse(newDate, formatter);

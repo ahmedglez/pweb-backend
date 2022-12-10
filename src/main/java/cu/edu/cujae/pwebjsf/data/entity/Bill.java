@@ -56,7 +56,7 @@ public class Bill {
   @Column(name = "special_amount")
   private double specialAmount;
 
-  @OneToMany(mappedBy = "bill")
+  @OneToMany(mappedBy = "billCode")
   private List<Contract> contracts;
 
   public int getCode() {
