@@ -1,5 +1,6 @@
 package cu.edu.cujae.pwebjsf.controllers;
 
+import cu.edu.cujae.pwebjsf.config.GlobalConfig;
 import cu.edu.cujae.pwebjsf.services.UserServices;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
 import cu.edu.cujae.pwebjsf.utils.SendEmail;
@@ -17,10 +18,12 @@ public class EmailController {
   @Autowired
   UserServices userServices;
 
+  @Autowired
+  SendEmail sendEmail;
+
   @GetMapping("/{email}")
   public ResponseEntity<String> sendEmail(@PathVariable String email)
     throws Exception {
-    SendEmail sendEmail = new SendEmail();
     int randomPIN = (int) (Math.random() * 90000000) + 1000;
 
     UserDto user = userServices.getUserByEmail(email);

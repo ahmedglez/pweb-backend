@@ -1,7 +1,5 @@
 package cu.edu.cujae.pwebjsf.config;
 
-import cu.edu.cujae.pwebjsf.middlewares.JwtFilterRequest;
-import cu.edu.cujae.pwebjsf.services.CustomUserDetailsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import cu.edu.cujae.pwebjsf.middlewares.JwtFilterRequest;
+import cu.edu.cujae.pwebjsf.services.CustomUserDetailsServices;
 
 @Configuration
 @EnableWebSecurity
@@ -35,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .disable()
       .authorizeRequests()
       .antMatchers("/**/login")
+      .permitAll()
+      .antMatchers("/sendmail/**")
       .permitAll()
       .anyRequest()
       .authenticated()
