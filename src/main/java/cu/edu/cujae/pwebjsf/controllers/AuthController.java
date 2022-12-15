@@ -1,5 +1,11 @@
 package cu.edu.cujae.pwebjsf.controllers;
 
+import cu.edu.cujae.pwebjsf.services.CustomUserDetailsServices;
+import cu.edu.cujae.pwebjsf.services.UserServices;
+import cu.edu.cujae.pwebjsf.services.dto.AuthenticationRequest;
+import cu.edu.cujae.pwebjsf.services.dto.AuthenticationResponse;
+import cu.edu.cujae.pwebjsf.services.dto.UserDto;
+import cu.edu.cujae.pwebjsf.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import cu.edu.cujae.pwebjsf.services.CustomUserDetailsServices;
-import cu.edu.cujae.pwebjsf.services.UserServices;
-import cu.edu.cujae.pwebjsf.services.dto.AuthenticationRequest;
-import cu.edu.cujae.pwebjsf.services.dto.AuthenticationResponse;
-import cu.edu.cujae.pwebjsf.services.dto.UserDto;
-import cu.edu.cujae.pwebjsf.utils.JWTUtil;
 
 @RestController
 @RequestMapping("/")
@@ -46,12 +45,18 @@ public class AuthController {
           request.getPassword()
         )
       );
+
+      System.out.println("Username: " + request.getUsername());
+      System.out.println("Password: " + request.getPassword());
+
       UserDetails userDetails = userDetailsServices.loadUserByUsername(
         request.getUsername()
       );
       String jwt = jwtUtil.generateToken(userDetails);
-      return new ResponseEntity<>(
-        new AuthenticationResponse(jwt),
+      AuthenticationResponse response = new AuthenticationResponse(jwt);
+      System.out.println("Token: " + response.getJwttoken());
+      return new ResponseEntity<AuthenticationResponse>(
+        response,
         HttpStatus.OK
       );
     } catch (BadCredentialsException e) {
