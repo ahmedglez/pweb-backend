@@ -2,6 +2,7 @@ package cu.edu.cujae.pwebjsf.data.crud;
 
 import cu.edu.cujae.pwebjsf.data.entity.User;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserCrudRepository extends CrudRepository<User, Integer> {
