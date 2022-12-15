@@ -27,6 +27,10 @@ public class StatusRepository {
 	    	return carStatusMapper.toCarStatusDto(statusCrudRepository.getByCode(code));
 		}
 
+		public void delete(int code){ statusCrudRepository.deleteById(code);}
+
+		public void save(CarStatusDto carStatusDto){statusCrudRepository.save(carStatusMapper.toCarStatus(carStatusDto));}
+
 
 	
 }

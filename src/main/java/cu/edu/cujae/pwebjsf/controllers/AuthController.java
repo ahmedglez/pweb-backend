@@ -20,7 +20,7 @@ import cu.edu.cujae.pwebjsf.services.dto.UserDto;
 import cu.edu.cujae.pwebjsf.utils.JWTUtil;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/v1")
 public class AuthController {
 
   @Autowired

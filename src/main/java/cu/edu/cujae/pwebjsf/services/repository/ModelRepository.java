@@ -30,10 +30,6 @@ public class ModelRepository {
     return model;
   }
 
-  public void create(CarModelDto modelDto) {
-    modelCrudRepository.save(carModelMapper.toCarModel(modelDto));
-  }
-
   public void save(CarModelDto modelDto) {
     modelCrudRepository.save(carModelMapper.toCarModel(modelDto));
   }

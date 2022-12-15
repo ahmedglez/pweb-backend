@@ -31,7 +31,7 @@ public class DriverRepository {
     return Optional.ofNullable(driverDtos);
   }
 
-  public Optional<DriverDto> getbyID(int driverId) {
+  public Optional<DriverDto> getByCode(int driverId) {
     Driver driver = driverCrudRepository.findByCode(driverId);
     DriverDto driverDto = mapper.toDriverDto(driver);
     return Optional.ofNullable(driverDto);
@@ -49,7 +49,7 @@ public class DriverRepository {
     return Optional.ofNullable(driverDto);
   }
 
-  public void delete(String ci) {
+  public void delete(int ci) {
     driverCrudRepository.deleteByCi(ci);
   }
 

@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throws UsernameNotFoundException {
         UserDto user = null;
 		try {
-			user = userService.getUserByUserName(username);
+			user = userService.findByUserName(username);
 			if (user == null) {
 	        	throw new UsernameNotFoundException("User not found.");
 			}

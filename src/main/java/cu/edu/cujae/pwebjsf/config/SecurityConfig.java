@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
       .antMatchers("/**/login")
       .permitAll()
-      .antMatchers("/sendmail/**")
+      .antMatchers("/api/v1/sendmail/**")
       .permitAll()
       .anyRequest()
       .authenticated()

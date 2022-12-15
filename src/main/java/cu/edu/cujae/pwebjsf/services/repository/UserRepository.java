@@ -59,7 +59,7 @@ public class UserRepository {
     return user;
   }
 
-  public UserDto findByUsername(String username) {
+  public UserDto findByUserName(String username) {
     User user = userCrudRepository.findByUsername(username);
     return userMapper.toUserDto(user);
   }

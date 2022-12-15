@@ -17,7 +17,7 @@ public class UserServices {
   }
 
   public UserDto getById(Integer code) {
-    return userRepository.getById(code);
+    return userRepository.getByCode(code);
   }
 
   public void save(UserDto user) {
@@ -39,4 +39,6 @@ public class UserServices {
   public UserDto getUserByEmail(String email) {
     return userRepository.getUserByEmail(email);
   }
+
+  public UserDto findByUserName(String userName){return userRepository.findByUserName(userName);}
 }
