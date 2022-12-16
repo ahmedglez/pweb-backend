@@ -1,15 +1,14 @@
 package cu.edu.cujae.pwebjsf.utils;
 
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
 import cu.edu.cujae.pwebjsf.config.GlobalConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import java.util.ArrayList;
+import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 @Component
 public class JWTUtil {
@@ -21,6 +20,7 @@ public class JWTUtil {
     return Jwts
       .builder()
       .setSubject(userDetails.getUsername())
+      .claim("roles", userDetails.getAuthorities())
       .setIssuedAt(new Date())
       .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
       .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
@@ -29,13 +29,22 @@ public class JWTUtil {
 
   public boolean validateToken(String token, UserDetails userDetails) {
     return (
-      userDetails.getUsername().equals(extractUsername(token)) &&
+      extractUsername(token).equals(userDetails.getUsername()) &&
       !isTokenExpired(token)
     );
   }
 
   public String extractUsername(String token) {
     return getClaims(token).getSubject();
+  }
+
+  public ArrayList<String> extractRoles(String token) {
+    ArrayList<String> roles_String = new ArrayList<>();
+    ArrayList roles = (ArrayList) getClaims(token).get("roles");
+    for (Object role : roles) {
+      roles_String.add(role.toString());
+    }
+    return roles_String;
   }
 
   public boolean isTokenExpired(String token) {

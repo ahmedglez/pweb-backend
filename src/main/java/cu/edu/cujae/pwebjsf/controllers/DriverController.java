@@ -58,6 +58,7 @@ public class DriverController {
     return new ResponseEntity<>(driverDto, HttpStatus.CREATED);
   }
 
+  
   @PutMapping("/") // Update Driver
   public ResponseEntity<DriverDto> update(@RequestBody DriverDto driverDto) {
     driverSevices.update(driverDto);
