@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/sendmail")
+@RequestMapping("/api/v1/sendmail")
 public class EmailController {
 
   @Autowired

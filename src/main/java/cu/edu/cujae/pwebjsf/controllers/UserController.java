@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     @Autowired
@@ -21,34 +21,33 @@ public class UserController {
         return new ResponseEntity<>(userServices.getAll(), HttpStatus.OK);
     }
 
-
-
-
     @GetMapping("/{code}")
     public ResponseEntity<UserDto> getById(@PathVariable("code") int code){
         return new ResponseEntity<>(userServices.getById(code),HttpStatus.OK);
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> create(@RequestBody UserDto user){
+    public ResponseEntity<UserDto> insert(@RequestBody UserDto user){
         userServices.save(user);
-        return  ResponseEntity.ok("User created");
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
     @PutMapping("/")
-    public ResponseEntity<String> update(@RequestBody UserDto user){
+    public ResponseEntity<UserDto> update(@RequestBody UserDto user){
         userServices.save(user);
-        return ResponseEntity.ok("User updated");
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
     @DeleteMapping("/{code}")
-    public ResponseEntity<String> delete(@PathVariable("code") int code){
+    public ResponseEntity<UserDto> delete(@PathVariable("code") int code){
         userServices.delete(code);
-        return ResponseEntity.ok("User deleted");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/isUser")
     public ResponseEntity<UserDto> isUser(@RequestBody UserDto userDto){
         return new ResponseEntity<UserDto>(userServices.isUser(userDto),HttpStatus.OK);
     }
+
+
 }

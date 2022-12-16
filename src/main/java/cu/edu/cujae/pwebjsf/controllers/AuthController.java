@@ -5,6 +5,7 @@ import cu.edu.cujae.pwebjsf.services.UserServices;
 import cu.edu.cujae.pwebjsf.services.dto.AuthenticationRequest;
 import cu.edu.cujae.pwebjsf.services.dto.AuthenticationResponse;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
+import cu.edu.cujae.pwebjsf.services.dto.UserForRecoverCode;
 import cu.edu.cujae.pwebjsf.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/v1")
 public class AuthController {
 
   @Autowired
@@ -46,9 +47,6 @@ public class AuthController {
         )
       );
 
-      System.out.println("Username: " + request.getUsername());
-      System.out.println("Password: " + request.getPassword());
-
       UserDetails userDetails = userDetailsServices.loadUserByUsername(
         request.getUsername()
       );
@@ -65,10 +63,12 @@ public class AuthController {
   }
 
   @PostMapping("/checkRecoveryCode")
-  public ResponseEntity<UserDto> checkRecoveryCode(@RequestBody UserDto user) {
+  public ResponseEntity<UserDto> checkRecoveryCode(
+    @RequestBody UserForRecoverCode user
+  ) {
     UserDto userDto = userServices.getUserByEmail(user.getEmail());
     if (userDto != null) {
-      if (userDto.getRecoverCode().equals(user.getRecoverCode())) {
+      if (userDto.getRecoverCode().equals(user.getRecoveryCode())) {
         return ResponseEntity.ok(userDto);
       } else {
         return ResponseEntity.badRequest().build();
@@ -82,9 +82,14 @@ public class AuthController {
   public ResponseEntity<String> changePassword(@RequestBody UserDto user) {
     UserDto userDto = userServices.getUserByEmail(user.getEmail());
     if (userDto != null) {
-      userDto.setPassword(user.getPassword());
-      userServices.save(userDto);
-      return ResponseEntity.ok("Contraseña cambiada");
+      if (userDto.getRecoverCode().equals(user.getRecoverCode())) {
+        userDto.setPassword(user.getPassword());
+        userDto.setRecoverCode("");
+        userServices.save(userDto);
+        return ResponseEntity.ok("Contraseña cambiada");
+      } else {
+        return ResponseEntity.badRequest().build();
+      }
     } else {
       return ResponseEntity.badRequest().build();
     }

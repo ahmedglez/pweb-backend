@@ -19,7 +19,7 @@ public class CarStatusService {
 	  }
 
 	  public CarStatusDto getById(int statusId) {
-	    return carStatusRepository.getStatusById(statusId);
+	    return carStatusRepository.getByCode(statusId);
 	  }
 
 	  public void save(CarStatusDto status) {

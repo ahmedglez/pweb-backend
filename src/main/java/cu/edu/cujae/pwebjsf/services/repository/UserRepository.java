@@ -22,8 +22,8 @@ public class UserRepository {
     return userMapper.toListUserDto(users);
   }
 
-  public UserDto getById(Integer id) {
-    return userMapper.toUserDto(userCrudRepository.findByCode(id));
+  public UserDto getByCode(Integer code) {
+    return userMapper.toUserDto(userCrudRepository.findByCode(code));
   }
 
   public void save(UserDto user) {
@@ -59,7 +59,7 @@ public class UserRepository {
     return user;
   }
 
-  public UserDto findByUsername(String username) {
+  public UserDto findByUserName(String username) {
     User user = userCrudRepository.findByUsername(username);
     return userMapper.toUserDto(user);
   }

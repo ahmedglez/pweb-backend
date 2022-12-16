@@ -23,21 +23,14 @@ public class StatusRepository {
 	        return status;
 	    }
 
+	    public CarStatusDto getByCode(int code){
+	    	return carStatusMapper.toCarStatusDto(statusCrudRepository.getByCode(code));
+		}
 
-	public CarStatusDto getStatusById(int statusId) {
-		CarStatusDto status = carStatusMapper.toCarStatusDto(
-				statusCrudRepository.findById(statusId)
-		);
-		return status;
-	}
+		public void delete(int code){ statusCrudRepository.deleteById(code);}
 
-	public void save(CarStatusDto statusDto) {
-		statusCrudRepository.save(carStatusMapper.toCarStatus(statusDto));
-	}
+		public void save(CarStatusDto carStatusDto){statusCrudRepository.save(carStatusMapper.toCarStatus(carStatusDto));}
 
 
-	public void delete(int statusId) {
-		statusCrudRepository.deleteById(statusId);
-	}
-
+	
 }

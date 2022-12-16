@@ -18,10 +18,18 @@ import cu.edu.cujae.pwebjsf.services.ContractServices;
 import cu.edu.cujae.pwebjsf.services.PaymentServices;
 import cu.edu.cujae.pwebjsf.services.dto.BillDto;
 import cu.edu.cujae.pwebjsf.services.dto.ContractDto;
+import cu.edu.cujae.pwebjsf.services.dto.ContractStringDto;
 import cu.edu.cujae.pwebjsf.services.dto.PaymentsDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.ParseException;
+import java.util.List;
 
 @RestController
-@RequestMapping("/contracts")
+@RequestMapping("/api/v1/contracts")
 public class ContractController {
 
     @Autowired
@@ -56,7 +64,7 @@ public class ContractController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> insert(@RequestBody ContractDto contractDto){
+    public ResponseEntity<String> insert(@RequestBody ContractStringDto contractDto) throws ParseException {
         contractServices.save(contractDto);
         return ResponseEntity.ok("Contract inserted");
     }
@@ -74,7 +82,7 @@ public class ContractController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<String> update(@RequestBody ContractDto contractDto){
+    public ResponseEntity<String> update(@RequestBody ContractStringDto contractDto) throws ParseException {
         contractServices.save(contractDto);
         return ResponseEntity.ok("Contract updated");
     }

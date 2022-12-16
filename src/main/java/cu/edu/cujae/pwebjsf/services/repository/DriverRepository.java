@@ -32,7 +32,7 @@ public class DriverRepository {
   }
 
   public Optional<DriverDto> getByCode(int driverId) {
-    Driver driver = driverCrudRepository.findById(driverId);
+    Driver driver = driverCrudRepository.findByCode(driverId);
     DriverDto driverDto = mapper.toDriverDto(driver);
     return Optional.ofNullable(driverDto);
   }
@@ -49,13 +49,13 @@ public class DriverRepository {
     return Optional.ofNullable(driverDto);
   }
 
-  public void delete(int code) {
-    driverCrudRepository.deleteById(code);
+  public void delete(int ci) {
+    driverCrudRepository.deleteByCi(ci);
   }
 
   public DriverDto update(DriverDto driver) {
     Driver driverEntity = mapper.toDriver(driver);
     Driver driverUpdated = driverCrudRepository.save(driverEntity);
-    return mapper.toDriverDto(driverUpdated);    
+    return mapper.toDriverDto(driverUpdated);
   }
 }

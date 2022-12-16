@@ -37,14 +37,14 @@ public class Contract {
   private int billCode;
 
   @ManyToOne
-  @JoinColumn(name = "cod_bill", insertable = false, updatable = false)
+  @JoinColumn(name = "cod_bill",insertable = false, updatable = false)
   private Bill bill;
 
   @Column(name = "cod_payment")
   private int paymentCode;
 
   @ManyToOne
-  @JoinColumn(name = "cod_payment", insertable = false, updatable = false)
+  @JoinColumn(name = "cod_payment",insertable = false, updatable = false)
   private Payment payment;
 
   @Column(name = "date_start")
