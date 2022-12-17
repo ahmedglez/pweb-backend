@@ -16,4 +16,8 @@ public class DriverCategoryServices {
     public List<DriversCategoriesDto> getAll(){return driverCategoryRepository.getAll();}
 
     public DriversCategoriesDto getByCode(int code){return driverCategoryRepository.getByCode(code);}
+
+    public void save(DriversCategoriesDto category){driverCategoryRepository.save(category);}
+
+    public void delete(int code){driverCategoryRepository.delete(code);}
 }

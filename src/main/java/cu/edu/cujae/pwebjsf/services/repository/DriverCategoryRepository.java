@@ -20,4 +20,8 @@ public class DriverCategoryRepository {
     public List<DriversCategoriesDto> getAll(){return driverCategoryMapper.toDriverCategoryDtoList(driverCategoryCrudRepository.findAll());}
 
     public DriversCategoriesDto getByCode(int code){return driverCategoryMapper.toDriverCategoryDto(driverCategoryCrudRepository.getByCode(code));}
+
+    public void save(DriversCategoriesDto category){driverCategoryCrudRepository.save(driverCategoryMapper.toDriverCategory(category));}
+
+    public void delete(int code){driverCategoryCrudRepository.deleteById(code);}
 }

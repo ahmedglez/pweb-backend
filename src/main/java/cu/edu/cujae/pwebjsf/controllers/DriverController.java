@@ -1,8 +1,11 @@
 package cu.edu.cujae.pwebjsf.controllers;
 
+import cu.edu.cujae.pwebjsf.services.DriverCategoryServices;
 import cu.edu.cujae.pwebjsf.services.DriverServices;
 import cu.edu.cujae.pwebjsf.services.dto.DriverDto;
 import java.util.List;
+
+import cu.edu.cujae.pwebjsf.services.dto.DriversCategoriesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,9 @@ public class DriverController {
 
   @Autowired
   private DriverServices driverSevices;
+
+  @Autowired
+  private DriverCategoryServices driverCategoryServices;
 
   @GetMapping("/all") //Get All Drivers
   public ResponseEntity<List<DriverDto>> getAll() {
@@ -69,4 +75,33 @@ public class DriverController {
     driverSevices.delete(code);
     return new ResponseEntity<DriverDto>(HttpStatus.OK);
   }
+
+  @GetMapping("/categories/{code}")
+  public ResponseEntity<DriversCategoriesDto> getCategoryByCode( @PathVariable("code") int code){
+    return ResponseEntity.ok(driverCategoryServices.getByCode(code));
+  }
+
+  @PostMapping("/categories/")
+  public ResponseEntity<String> insertCategories(@RequestBody DriversCategoriesDto categoriesDto){
+    driverCategoryServices.save(categoriesDto);
+    return ResponseEntity.ok("Category inserted");
+  }
+
+  @GetMapping("/categories/all")
+  public ResponseEntity<List<DriversCategoriesDto>> getCategories(){
+    return ResponseEntity.ok(driverCategoryServices.getAll());
+  }
+
+  @PutMapping("/categories/")
+  public ResponseEntity<String> updateCategories(@RequestBody DriversCategoriesDto categoriesDto){
+    driverCategoryServices.save(categoriesDto);
+    return ResponseEntity.ok("Category updated");
+  }
+
+  @DeleteMapping("/categories/{code}")
+  public ResponseEntity<String> deleteCategory( @PathVariable("code") int code){
+    driverCategoryServices.delete(code);
+    return ResponseEntity.ok("Category deleted");
+  }
+
 }
