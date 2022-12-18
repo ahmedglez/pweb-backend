@@ -22,7 +22,24 @@ public class JWTUtil {
       .setSubject(userDetails.getUsername())
       .claim("roles", userDetails.getAuthorities())
       .setIssuedAt(new Date())
-      .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+      .setExpiration(
+        /* 15 minutes */
+        new Date(System.currentTimeMillis() + 1000 * 60 * 15)
+      )
+      .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
+      .compact();
+  }
+
+  public String generateRefreshToken(UserDetails userDetails) {
+    return Jwts
+      .builder()
+      .setSubject(userDetails.getUsername())
+      .claim("roles", userDetails.getAuthorities())
+      .setIssuedAt(new Date())
+      .setExpiration(
+        /* 1 hour  */
+        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 1)
+      )
       .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
       .compact();
   }

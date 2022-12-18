@@ -50,9 +50,12 @@ public class AuthController {
       UserDetails userDetails = userDetailsServices.loadUserByUsername(
         request.getUsername()
       );
-      String jwt = jwtUtil.generateToken(userDetails);
-      AuthenticationResponse response = new AuthenticationResponse(jwt);
-      System.out.println("Token: " + response.getJwttoken());
+      String token = jwtUtil.generateToken(userDetails);
+      String refreshToken = jwtUtil.generateRefreshToken(userDetails);
+      AuthenticationResponse response = new AuthenticationResponse(
+        token,
+        refreshToken
+      );
       return new ResponseEntity<AuthenticationResponse>(
         response,
         HttpStatus.OK
