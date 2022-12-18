@@ -14,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -114,6 +115,32 @@ public class AuthController {
     UserDto userDto = userServices.getUserByEmail(user.getEmail());
     if (userDto != null) {
       return ResponseEntity.ok("Correo registrado");
+    } else {
+      return ResponseEntity.badRequest().build();
+    }
+  }
+
+  @GetMapping("/refreshToken")
+  public ResponseEntity<AuthenticationResponse> refreshToken(
+    @RequestBody AuthenticationResponse request
+  ) {
+    String token = request.getJwttoken();
+    String refreshToken = request.getRefreshToken();
+    UserDetails userDetails = userDetailsServices.loadUserByUsername(
+      jwtUtil.extractUsername(token)
+    );
+    if (
+      jwtUtil.validateToken(token, userDetails) && jwtUtil.validateToken(refreshToken, userDetails)
+    ) {
+      String newToken = jwtUtil.generateTokenFromRefreshToken(refreshToken);
+      String newRefreshToken = jwtUtil.generateRefreshTokenFromRefreshToken(
+        refreshToken
+      );
+      AuthenticationResponse response = new AuthenticationResponse(
+        newToken,
+        newRefreshToken
+      );
+      return ResponseEntity.ok(response);
     } else {
       return ResponseEntity.badRequest().build();
     }

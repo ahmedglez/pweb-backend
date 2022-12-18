@@ -44,6 +44,35 @@ public class JWTUtil {
       .compact();
   }
 
+  public String generateTokenFromRefreshToken(String refreshToken) {
+    return Jwts
+      .builder()
+      .setSubject(extractUsername(refreshToken))
+      .claim("roles", extractRoles(refreshToken))
+      .setIssuedAt(new Date())
+      .setExpiration(
+        /* 15 minutes */
+        new Date(System.currentTimeMillis() + 1000 * 60 * 15)
+      )
+      .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
+      .compact();
+  }
+
+
+  public String generateRefreshTokenFromRefreshToken(String refreshToken) {
+    return Jwts
+      .builder()
+      .setSubject(extractUsername(refreshToken))
+      .claim("roles", extractRoles(refreshToken))
+      .setIssuedAt(new Date())
+      .setExpiration(
+        /* 1 hour  */
+        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 1)
+      )
+      .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
+      .compact();
+  }
+
   public boolean validateToken(String token, UserDetails userDetails) {
     return (
       extractUsername(token).equals(userDetails.getUsername()) &&
