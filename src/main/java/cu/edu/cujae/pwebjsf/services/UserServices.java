@@ -19,28 +19,6 @@ public class UserServices {
     return userRepository.getAll();
   }
 
-  public void encodeAllPasswords() {
-    List<UserDto> users = getAll();
-    for (UserDto user : users) {
-      String password = user.getPassword();
-      String encodedPassword = passwordEncoderUtils.encode(password);
-      boolean isPasswordValid = passwordEncoderUtils.isPasswordValid(
-        password,
-        encodedPassword
-      );
-      System.out.println(
-        "Password: " +
-        password +
-        " - Encoded Password: " +
-        encodedPassword +
-        " - Is Password Valid: " +
-        isPasswordValid
-      );
-      user.setPassword(encodedPassword);
-      save(user);
-    }
-  }
-
   public UserDto getById(Integer code) {
     return userRepository.getByCode(code);
   }
