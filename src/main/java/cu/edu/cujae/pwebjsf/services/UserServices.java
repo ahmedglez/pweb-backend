@@ -2,6 +2,7 @@ package cu.edu.cujae.pwebjsf.services;
 
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
 import cu.edu.cujae.pwebjsf.services.repository.UserRepository;
+import cu.edu.cujae.pwebjsf.utils.PasswordEncoderUtils;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,11 +10,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServices {
 
+  private PasswordEncoderUtils passwordEncoderUtils = new PasswordEncoderUtils();
+
   @Autowired
   private UserRepository userRepository;
 
   public List<UserDto> getAll() {
     return userRepository.getAll();
+  }
+
+  public void encodeAllPasswords() {
+    List<UserDto> users = getAll();
+    for (UserDto user : users) {
+      String password = user.getPassword();
+      String encodedPassword = passwordEncoderUtils.encode(password);
+      boolean isPasswordValid = passwordEncoderUtils.isPasswordValid(
+        password,
+        encodedPassword
+      );
+      System.out.println(
+        "Password: " +
+        password +
+        " - Encoded Password: " +
+        encodedPassword +
+        " - Is Password Valid: " +
+        isPasswordValid
+      );
+      user.setPassword(encodedPassword);
+      save(user);
+    }
   }
 
   public UserDto getById(Integer code) {

@@ -7,6 +7,7 @@ import cu.edu.cujae.pwebjsf.services.dto.AuthenticationResponse;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
 import cu.edu.cujae.pwebjsf.services.dto.UserForRecoverCode;
 import cu.edu.cujae.pwebjsf.utils.JWTUtil;
+import cu.edu.cujae.pwebjsf.utils.PasswordEncoderUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public class AuthController {
   @Autowired
   private UserServices userServices;
 
+  private PasswordEncoderUtils passwordEncoderUtils = new PasswordEncoderUtils();
+
   @Autowired
   private AuthenticationManager authenticationManager;
 
@@ -46,10 +49,26 @@ public class AuthController {
     @RequestBody AuthenticationRequest request
   ) {
     try {
+      if (request.getUsername() == null || request.getPassword() == null) {
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+      }
+
+      UserDto user = userServices.findByUserName(request.getUsername());
+      if (user == null) {
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+      }
+      boolean isPasswordValid = passwordEncoderUtils.isPasswordValid(
+        request.getPassword(),
+        user.getPassword()
+      );
+      if (isPasswordValid == false) {
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+      }
+
       authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
           request.getUsername(),
-          request.getPassword()
+          user.getPassword()
         )
       );
 

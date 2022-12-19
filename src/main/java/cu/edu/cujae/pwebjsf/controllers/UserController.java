@@ -35,6 +35,13 @@ public class UserController {
     );
   }
 
+  @GetMapping("/encodeAll")
+  public ResponseEntity<UserDto> encodeAll() {
+    userServices.encodeAllPasswords();
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+  
+
   @PostMapping("/")
   public ResponseEntity<UserDto> insert(@RequestBody UserDto user) {
     userServices.save(user);
