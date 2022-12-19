@@ -25,7 +25,12 @@ public class JWTUtil {
       .builder()
       .setSubject(userDetails.getUsername())
       .claim("roles", userDetails.getAuthorities())
-      .claim("code", userServices.getUserByUsername(userDetails.getUsername()).getCode())
+      .claim(
+        "userCode",
+        Integer.toString(
+          userServices.getUserByUsername(userDetails.getUsername()).getCode()
+        )
+      )
       .setIssuedAt(new Date())
       .setExpiration(
         /* 15 minutes */
@@ -67,7 +72,7 @@ public class JWTUtil {
     return Jwts
       .builder()
       .setSubject(extractUsername(refreshToken))
-      .claim("roles", extractRoles(refreshToken))      
+      .claim("roles", extractRoles(refreshToken))
       .setIssuedAt(new Date())
       .setExpiration(
         /* 1 hour  */
@@ -76,6 +81,8 @@ public class JWTUtil {
       .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
       .compact();
   }
+
+
 
   public boolean validateToken(String token, UserDetails userDetails) {
     return (

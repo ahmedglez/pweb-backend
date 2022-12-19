@@ -77,13 +77,13 @@ public class AuthController {
     HttpServletResponse response
   ) {
     try {
-      String token = request.getHeader("Authorization").replace("Bearer ", "");
       Authentication auth = SecurityContextHolder
         .getContext()
         .getAuthentication();
       if (auth != null) {
         new SecurityContextLogoutHandler().logout(request, response, auth);
       }
+      /* set Authentication null for the token */
       return "redirect:/http://localhost:8080/pweb-jsf-0.0.1-SNAPSHOT/";
     } catch (Exception e) {
       return "redirect:/http://localhost:8080/pweb-jsf-0.0.1-SNAPSHOT/";
