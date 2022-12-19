@@ -47,6 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .anyRequest()
       .authenticated()
       .and()
+      .logout()
+      .logoutUrl("http://localhost:8080/pweb-jsf-0.0.1-SNAPSHOT/")
+      .logoutSuccessUrl("http://localhost:8080/pweb-jsf-0.0.1-SNAPSHOT/")
+      .and()
       .sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

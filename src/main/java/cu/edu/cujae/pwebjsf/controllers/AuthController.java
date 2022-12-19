@@ -7,13 +7,18 @@ import cu.edu.cujae.pwebjsf.services.dto.AuthenticationResponse;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
 import cu.edu.cujae.pwebjsf.services.dto.UserForRecoverCode;
 import cu.edu.cujae.pwebjsf.utils.JWTUtil;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,6 +68,25 @@ public class AuthController {
       );
     } catch (BadCredentialsException e) {
       return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+  }
+
+  @GetMapping("/logout")
+  public String logoutPage(
+    HttpServletRequest request,
+    HttpServletResponse response
+  ) {
+    try {
+      String token = request.getHeader("Authorization").replace("Bearer ", "");
+      Authentication auth = SecurityContextHolder
+        .getContext()
+        .getAuthentication();
+      if (auth != null) {
+        new SecurityContextLogoutHandler().logout(request, response, auth);
+      }
+      return "redirect:/http://localhost:8080/pweb-jsf-0.0.1-SNAPSHOT/";
+    } catch (Exception e) {
+      return "redirect:/http://localhost:8080/pweb-jsf-0.0.1-SNAPSHOT/";
     }
   }
 
@@ -120,7 +144,7 @@ public class AuthController {
     }
   }
 
-  @GetMapping("/refreshToken")
+  @PostMapping("/refreshToken")
   public ResponseEntity<AuthenticationResponse> refreshToken(
     @RequestBody AuthenticationResponse request
   ) {
@@ -130,7 +154,8 @@ public class AuthController {
       jwtUtil.extractUsername(token)
     );
     if (
-      jwtUtil.validateToken(token, userDetails) && jwtUtil.validateToken(refreshToken, userDetails)
+      jwtUtil.validateToken(token, userDetails) &&
+      jwtUtil.validateToken(refreshToken, userDetails)
     ) {
       String newToken = jwtUtil.generateTokenFromRefreshToken(refreshToken);
       String newRefreshToken = jwtUtil.generateRefreshTokenFromRefreshToken(

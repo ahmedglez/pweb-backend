@@ -28,6 +28,10 @@ public class UserServices {
     userRepository.delete(code);
   }
 
+  public UserDto getUserByUsername(String username) {
+    return userRepository.getUserByUsername(username);
+  }
+
   public UserDto isUser(UserDto user) {
     return userRepository.exists(user);
   }
@@ -40,5 +44,7 @@ public class UserServices {
     return userRepository.getUserByEmail(email);
   }
 
-  public UserDto findByUserName(String userName){return userRepository.findByUserName(userName);}
+  public UserDto findByUserName(String userName) {
+    return userRepository.findByUserName(userName);
+  }
 }

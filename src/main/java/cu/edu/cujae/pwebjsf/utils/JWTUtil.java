@@ -1,6 +1,7 @@
 package cu.edu.cujae.pwebjsf.utils;
 
 import cu.edu.cujae.pwebjsf.config.GlobalConfig;
+import cu.edu.cujae.pwebjsf.services.UserServices;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,11 +17,15 @@ public class JWTUtil {
   @Autowired
   private GlobalConfig globalConfig;
 
+  @Autowired
+  private UserServices userServices;
+
   public String generateToken(UserDetails userDetails) {
     return Jwts
       .builder()
       .setSubject(userDetails.getUsername())
       .claim("roles", userDetails.getAuthorities())
+      .claim("code", userServices.getUserByUsername(userDetails.getUsername()).getCode())
       .setIssuedAt(new Date())
       .setExpiration(
         /* 15 minutes */
@@ -58,12 +63,11 @@ public class JWTUtil {
       .compact();
   }
 
-
   public String generateRefreshTokenFromRefreshToken(String refreshToken) {
     return Jwts
       .builder()
       .setSubject(extractUsername(refreshToken))
-      .claim("roles", extractRoles(refreshToken))
+      .claim("roles", extractRoles(refreshToken))      
       .setIssuedAt(new Date())
       .setExpiration(
         /* 1 hour  */
