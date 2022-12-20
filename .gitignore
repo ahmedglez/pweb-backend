@@ -58,6 +58,11 @@ mvnw.cmd
 ### swagger ###
 SwaggerConfig.java
 
+### properties ###
+application.properties
+application-dev.properties
+application-pdn.properties
+
 
 
 
