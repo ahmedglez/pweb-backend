@@ -1,6 +1,7 @@
 package cu.edu.cujae.pwebjsf.utils;
 
 import cu.edu.cujae.pwebjsf.config.GlobalConfig;
+import cu.edu.cujae.pwebjsf.services.UserServices;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,16 +17,72 @@ public class JWTUtil {
   @Autowired
   private GlobalConfig globalConfig;
 
+  @Autowired
+  private UserServices userServices;
+
   public String generateToken(UserDetails userDetails) {
     return Jwts
       .builder()
       .setSubject(userDetails.getUsername())
       .claim("roles", userDetails.getAuthorities())
+      .claim(
+        "userCode",
+        Integer.toString(
+          userServices.getUserByUsername(userDetails.getUsername()).getCode()
+        )
+      )
       .setIssuedAt(new Date())
-      .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+      .setExpiration(
+        /* 15 minutes */
+        new Date(System.currentTimeMillis() + 1000 * 60 * 15)
+      )
       .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
       .compact();
   }
+
+  public String generateRefreshToken(UserDetails userDetails) {
+    return Jwts
+      .builder()
+      .setSubject(userDetails.getUsername())
+      .claim("roles", userDetails.getAuthorities())
+      .setIssuedAt(new Date())
+      .setExpiration(
+        /* 1 hour  */
+        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 1)
+      )
+      .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
+      .compact();
+  }
+
+  public String generateTokenFromRefreshToken(String refreshToken) {
+    return Jwts
+      .builder()
+      .setSubject(extractUsername(refreshToken))
+      .claim("roles", extractRoles(refreshToken))
+      .setIssuedAt(new Date())
+      .setExpiration(
+        /* 15 minutes */
+        new Date(System.currentTimeMillis() + 1000 * 60 * 15)
+      )
+      .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
+      .compact();
+  }
+
+  public String generateRefreshTokenFromRefreshToken(String refreshToken) {
+    return Jwts
+      .builder()
+      .setSubject(extractUsername(refreshToken))
+      .claim("roles", extractRoles(refreshToken))
+      .setIssuedAt(new Date())
+      .setExpiration(
+        /* 1 hour  */
+        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 1)
+      )
+      .signWith(SignatureAlgorithm.HS256, globalConfig.getJwt_secret())
+      .compact();
+  }
+
+
 
   public boolean validateToken(String token, UserDetails userDetails) {
     return (

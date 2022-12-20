@@ -22,6 +22,11 @@ public class UserRepository {
     return userMapper.toListUserDto(users);
   }
 
+  public UserDto getUserByUsername(String username) {
+    User user = userCrudRepository.findByUsername(username);
+    return userMapper.toUserDto(user);
+  }
+
   public UserDto getByCode(Integer code) {
     return userMapper.toUserDto(userCrudRepository.findByCode(code));
   }

@@ -31,11 +31,15 @@ public class CustomUserDetailsServices implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username)
     throws UsernameNotFoundException {
-    UserDto user = service.findByUserName(username);
+    /* password with BCryptPasswordEncoder encoding */
+    UserDto user = service.getUserByUsername(username);
+    if (user == null) {
+      throw new UsernameNotFoundException("User not found");
+    }
     return new User(
       user.getUsername(),
       "{noop}" + user.getPassword(),
       getGrantedAuthorities(user.getRoles())
     );
-  } 
+  }
 }

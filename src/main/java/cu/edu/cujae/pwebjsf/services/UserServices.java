@@ -2,12 +2,15 @@ package cu.edu.cujae.pwebjsf.services;
 
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
 import cu.edu.cujae.pwebjsf.services.repository.UserRepository;
+import cu.edu.cujae.pwebjsf.utils.PasswordEncoderUtils;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServices {
+
+  private PasswordEncoderUtils passwordEncoderUtils = new PasswordEncoderUtils();
 
   @Autowired
   private UserRepository userRepository;
@@ -28,6 +31,10 @@ public class UserServices {
     userRepository.delete(code);
   }
 
+  public UserDto getUserByUsername(String username) {
+    return userRepository.getUserByUsername(username);
+  }
+
   public UserDto isUser(UserDto user) {
     return userRepository.exists(user);
   }
@@ -40,5 +47,7 @@ public class UserServices {
     return userRepository.getUserByEmail(email);
   }
 
-  public UserDto findByUserName(String userName){return userRepository.findByUserName(userName);}
+  public UserDto findByUserName(String userName) {
+    return userRepository.findByUserName(userName);
+  }
 }
