@@ -16,7 +16,6 @@ public class UserController {
   @Autowired
   private UserServices userServices;
 
-  PasswordEncoderUtils passwordEncoderUtils = new PasswordEncoderUtils();
 
   @GetMapping("/all")
   public ResponseEntity<List<UserDto>> getAll() {
@@ -40,7 +39,6 @@ public class UserController {
 
   @PostMapping("/")
   public ResponseEntity<UserDto> insert(@RequestBody UserDto user) {
-    user.setPassword(passwordEncoderUtils.encode(user.getPassword()));
     userServices.save(user);
     return new ResponseEntity<>(HttpStatus.OK);
   }
