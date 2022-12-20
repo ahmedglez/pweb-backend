@@ -19,17 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SendEmail {
+public class EmailUtils {
 
   @Autowired
   GlobalConfig globalConfig;
 
-  public void sendEmail(
-    String email,
-    String name,
-    String subject,
-    String randomPIN
-  ) throws AddressException, MessagingException, IOException {
+  public void sendEmail(String email, String subject, String htmlMsg)
+    throws AddressException, MessagingException, IOException {
     Properties props = new Properties();
     props.put("mail.smtp.auth", globalConfig.getEmail_auth());
     props.put("mail.smtp.starttls.enable", globalConfig.getEmail_starttls());
@@ -55,22 +51,6 @@ public class SendEmail {
     msg.setSubject(subject);
     msg.setContent(subject, "text/html");
     msg.setSentDate(new Date());
-
-    String htmlMsg =
-      "<h3>Hola, " +
-      name +
-      "</h3><p>Aquí está su código de recuperación de contraseña:</p><br><p><b>" +
-      " " +
-      randomPIN +
-      " " +
-      "</b></p><br><p>Si no solicitó una recuperación de contraseña, puede ignorar este correo electrónico. " +
-      " </p><br><p>Si tiene alguna pregunta, no dude en contactarnos en: " +
-      " </p><p> <a href='mailto: " +
-      globalConfig.getEmail_username() +
-      "'>" +
-      globalConfig.getEmail_username() +
-      "</a>" +
-      "</p><br><p>Saludos,<br>CarRent Team</p>";
 
     MimeBodyPart messageBodyPart = new MimeBodyPart();
     messageBodyPart.setContent(htmlMsg, "text/html");

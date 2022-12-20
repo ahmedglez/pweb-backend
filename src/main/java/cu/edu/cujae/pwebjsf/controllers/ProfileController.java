@@ -2,6 +2,7 @@ package cu.edu.cujae.pwebjsf.controllers;
 
 import cu.edu.cujae.pwebjsf.services.UserServices;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
+import cu.edu.cujae.pwebjsf.utils.EmailUtils;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,11 +20,12 @@ public class ProfileController {
   @Autowired
   private UserServices userServices;
 
+  @Autowired
+  EmailUtils emailUtils;
+
   @GetMapping("/me")
   public ResponseEntity<UserDto> getProfile(HttpServletRequest request) {
-    /* get username from bearer token */
     String username = request.getUserPrincipal().getName();
-
     try {
       if (username == null) {
         return ResponseEntity.notFound().build();
@@ -56,6 +58,36 @@ public class ProfileController {
         );
       }
       userServices.save(user);
+      String field = request.getHeader("field");
+      if (field != null && field.equals("email")) {
+        String name =
+          user.getFirstName().substring(0, 1).toUpperCase() +
+          user.getFirstName().substring(1);
+        emailUtils.sendEmail(
+          user.getEmail(),
+          "Email updated successfully",
+          " Hello " + name + ", your email has been updated successfully"
+        );
+      } else if (field != null && field.equals("password")) {
+        String name =
+          user.getFirstName().substring(0, 1).toUpperCase() +
+          user.getFirstName().substring(1);
+        emailUtils.sendEmail(
+          user.getEmail(),
+          "Password updated successfully",
+          " Hello " + name + ", your password has been updated successfully"
+        );
+      } else if (field != null && field.equals("username")) {
+        String name =
+          user.getFirstName().substring(0, 1).toUpperCase() +
+          user.getFirstName().substring(1);
+        emailUtils.sendEmail(
+          user.getEmail(),
+          "Username updated successfully",
+          " Hello " + name + ", your username has been updated successfully"
+        );
+      }
+
       return new ResponseEntity<>(
         "Profile updated successfully",
         HttpStatus.OK
@@ -64,4 +96,6 @@ public class ProfileController {
       return ResponseEntity.notFound().build();
     }
   }
+
+  
 }
