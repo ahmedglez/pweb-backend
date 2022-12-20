@@ -2,42 +2,64 @@ package cu.edu.cujae.pwebjsf.controllers;
 
 import cu.edu.cujae.pwebjsf.services.UserServices;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
-import cu.edu.cujae.pwebjsf.services.dto.UserForRecoverCode;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/me")
+@RequestMapping("/api/v1/profile")
 public class ProfileController {
 
   @Autowired
   private UserServices userServices;
 
-  @GetMapping("/profile")
-  public ResponseEntity<UserDto> getProfile(
-    @RequestBody UserForRecoverCode user2
-  ) {
+  @GetMapping("/me")
+  public ResponseEntity<UserDto> getProfile(HttpServletRequest request) {
+    /* get username from bearer token */
+    String username = request.getUserPrincipal().getName();
+
     try {
-      if (user2.getEmail() == null) {
+      if (username == null) {
         return ResponseEntity.notFound().build();
       }
-      UserDto user = userServices.getUserByEmail(user2.getEmail());
-      return ResponseEntity.ok(user);
+      UserDto userDto = userServices.getUserByUsername(username);
+      return ResponseEntity.ok(userDto);
     } catch (Exception e) {
       return ResponseEntity.notFound().build();
     }
   }
 
-  @PostMapping("/update")
-  public ResponseEntity<String> updateProfile(@RequestBody UserDto user) {
+  @PutMapping("/")
+  public ResponseEntity<String> updateProfile(
+    @RequestBody UserDto user,
+    HttpServletRequest request
+  ) {
     try {
+      String username = request.getUserPrincipal().getName();
+      int code = userServices.getUserByUsername(username).getCode();
+      if (username == null) {
+        return new ResponseEntity<>(
+          "You must be logged in to update your profile",
+          HttpStatus.FORBIDDEN
+        );
+      }
+      if (code != user.getCode()) {
+        return new ResponseEntity<>(
+          "You can't update other user's profile",
+          HttpStatus.FORBIDDEN
+        );
+      }
       userServices.save(user);
-      return ResponseEntity.ok("User updated");
+      return new ResponseEntity<>(
+        "Profile updated successfully",
+        HttpStatus.OK
+      );
     } catch (Exception e) {
       return ResponseEntity.notFound().build();
     }

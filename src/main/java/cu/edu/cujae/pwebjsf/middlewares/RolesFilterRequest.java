@@ -46,16 +46,19 @@ public class RolesFilterRequest extends OncePerRequestFilter {
     HttpServletResponse response,
     FilterChain filterChain
   ) throws ServletException, IOException {
-    if (
-      request.getMethod().equals("PUT") || request.getMethod().equals("DELETE")
-    ) {
-      if (!hasAdminRole(request, response, filterChain)) {
-        response.sendError(
-          HttpServletResponse.SC_FORBIDDEN,
-          "You don't have permission to do this action"
-        );
-      } else {
-        System.out.println("You have permission to do this action");
+    if (!request.getRequestURI().contains("/profile/")) {
+      if (
+        request.getMethod().equals("PUT") ||
+        request.getMethod().equals("DELETE")
+      ) {
+        if (!hasAdminRole(request, response, filterChain)) {
+          response.sendError(
+            HttpServletResponse.SC_FORBIDDEN,
+            "You don't have permission to do this action"
+          );
+        } else {
+          System.out.println("You have permission to do this action");
+        }
       }
     }
     filterChain.doFilter(request, response);
