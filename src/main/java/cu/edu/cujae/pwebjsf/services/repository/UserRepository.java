@@ -5,6 +5,8 @@ import cu.edu.cujae.pwebjsf.data.entity.User;
 import cu.edu.cujae.pwebjsf.data.mapper.UserMapper;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
 import java.util.List;
+
+import cu.edu.cujae.pwebjsf.utils.PasswordEncoderUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +18,7 @@ public class UserRepository {
 
   @Autowired
   private UserCrudRepository userCrudRepository;
+
 
   public List<UserDto> getAll() {
     List<User> users = (List<User>) userCrudRepository.findAll();
@@ -32,6 +35,8 @@ public class UserRepository {
   }
 
   public void save(UserDto user) {
+    PasswordEncoderUtils encoder = new PasswordEncoderUtils();
+    user.setPassword(encoder.encode(user.getPassword()));
     User userEntity = userMapper.toUser(user);
     userCrudRepository.save(userEntity);
   }
