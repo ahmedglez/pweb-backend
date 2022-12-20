@@ -30,6 +30,7 @@ public class EmailController {
     if (user != null) {
       user.setRecoverCode(Integer.toString(randomPIN));
       String name = user.getFirstName().split(" ")[0];
+      System.out.println(user.getPassword());
       userServices.save(user);
       sendEmail.sendEmail(
         email,

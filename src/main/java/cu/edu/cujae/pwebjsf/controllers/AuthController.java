@@ -128,9 +128,13 @@ public class AuthController {
   @PostMapping("/changePassword")
   public ResponseEntity<String> changePassword(@RequestBody UserDto user) {
     UserDto userDto = userServices.getUserByEmail(user.getEmail());
+    System.out.printf("User Password ", user.getPassword());
+    System.out.printf("UserDto Password ", userDto.getPassword());
+    System.out.printf("User Recover Code ", user.getRecoverCode());
     if (userDto != null) {
       if (userDto.getRecoverCode().equals(user.getRecoverCode())) {
-        userDto.setPassword(user.getPassword());
+        userDto.setPassword(passwordEncoderUtils.encode(user.getPassword()));
+        System.out.printf("UserDto New Password ", userDto.getPassword());
         userDto.setRecoverCode("");
         userServices.save(userDto);
         return ResponseEntity.ok("Contraseña cambiada");
