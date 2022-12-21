@@ -37,7 +37,7 @@ public class RoleController {
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
-  @DeleteMapping("/delete/{code}")
+  @DeleteMapping("/{code}")
   public ResponseEntity<RoleDto> delete(@PathVariable("code") int code) {
     roleServices.delete(code);
     return new ResponseEntity<>(HttpStatus.OK);

@@ -77,5 +77,13 @@ public class UserDto {
     this.lastName = lastName;
   }
 
-  
+  public boolean containRoleAdministrator(){
+    for(RoleDto r:roles){
+      if(r.getRole().equals("Administrator")){
+        return true;
+      }
+    }
+    return false;
+  }
+
 }
