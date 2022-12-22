@@ -1,0 +1,633 @@
+{
+	"info": {
+		"_postman_id": "2f9d4186-0a54-4371-b42f-152d90f51364",
+		"name": "PWEB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14986624"
+	},
+	"item": [
+		{
+			"name": "drivers",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJBZG1pbmlzdHJhdG9yIn0seyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwidXNlckNvZGUiOiIzIiwiaWF0IjoxNjcxNDM0NjA3LCJleHAiOjE2NzE0MzU1MDd9.hvQ8Mi8BvZ9ki7_UYqHz6FfD6rSrcvvFTiNoEHiz-YA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  erviuninii",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{pweb-host}}drivers/all",
+							"host": [
+								"{{pweb-host}}drivers"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by CI",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsImlhdCI6MTY3MTA2OTI2NywiZXhwIjoxNjcxMTA1MjY3fQ.1W2SBkiS_bzNWnz-D34dUhI68zVLu7R3MymHAmNDCKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}drivers/ci/84051436521",
+							"host": [
+								"{{pweb-host}}drivers"
+							],
+							"path": [
+								"ci",
+								"84051436521"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}drivers/getByCategory/2",
+							"host": [
+								"{{pweb-host}}drivers"
+							],
+							"path": [
+								"getByCategory",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Driver",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \r\n        \"ci\": \"00052068475\",\r\n        \"name\": \"Petunio \",\r\n        \"lastName\": \"Gonzalez Betancourt \",\r\n        \"address\": \"Concordia #867\",\r\n        \"category\": {\r\n            \"code\": 2,\r\n            \"category\": \"Universitario\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pweb-host}}drivers/",
+							"host": [
+								"{{pweb-host}}drivers"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJBZG1pbmlzdHJhdG9yIn0seyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwiaWF0IjoxNjcxMjMwNzI2LCJleHAiOjE2NzEyNjY3MjZ9.lNAiCSJI2yvLjgvsZPvUZTEatDpskBBUq9qCZIk26PI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "role",
+								"value": "Administrator",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"code\": 11,\r\n        \"ci\": \"00092068424\",\r\n        \"name\": \"Francizcano\",\r\n        \"lastName\": \"Alvarez Betancourt \",\r\n        \"address\": \"Concordia #867\",\r\n        \"category\": {\r\n            \"code\": 2,\r\n            \"category\": \"Universitario\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pweb-host}}drivers/",
+							"host": [
+								"{{pweb-host}}drivers"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Driver",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}drivers/",
+							"host": [
+								"{{pweb-host}}drivers"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Code",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsImlhdCI6MTY3MTA2OTI2NywiZXhwIjoxNjcxMTA1MjY3fQ.1W2SBkiS_bzNWnz-D34dUhI68zVLu7R3MymHAmNDCKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}drivers/3",
+							"host": [
+								"{{pweb-host}}drivers"
+							],
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"ahmed\",\r\n    \"password\": \"admin1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pweb-host}}login",
+							"host": [
+								"{{pweb-host}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Recovery Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pweb-host}}sendmail/",
+							"host": [
+								"{{pweb-host}}sendmail"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check Recovery Code",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ahmediglez@gmail.com\",\r\n    \"recoveryCode\": \"85623456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pweb-host}}checkRecoveryCode",
+							"host": [
+								"{{pweb-host}}checkRecoveryCode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": 3,\r\n    \"username\": \"ahmed\",\r\n    \"password\": \"perrito\",\r\n    \"email\": \"ahmediglez@gmail.com\",\r\n    \"recoverCode\": \"85623456\",\r\n    \"firstName\": \"Ahmed Ivan\",\r\n    \"lastName\": \"Gonzalez Betancourt\",\r\n    \"roles\": [\r\n        {\r\n            \"code\": 1,\r\n            \"role\": \"Administrator\",\r\n            \"description\": \"Repository and integration service restart. User creation and deletion. User permission for folders. Folder creation. Software installations. Object migration to higher level environment. Control metrics and estatistics of the system\"\r\n        },\r\n        {\r\n            \"code\": 2,\r\n            \"role\": \"Normal User\",\r\n            \"description\": \"Members who have been granted access to the system's information in order to perform assigned duties or in fulfilment of assigned roles or functions at the organization, for example visualizing data about drivers, cars, or modify some values\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pweb-host}}changePassword/",
+							"host": [
+								"{{pweb-host}}changePassword"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jwttoken\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJBZG1pbmlzdHJhdG9yIn0seyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwiaWF0IjoxNjcxMzk4MTg0LCJleHAiOjE2NzEzOTkwODR9.bOvtjq_lS3jdSr5xIp-rasIxxPh3FPST3nuvn5_2BLg\",\r\n    \"refreshToken\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJBZG1pbmlzdHJhdG9yIn0seyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwiaWF0IjoxNjcxMzk4MTg0LCJleHAiOjE2NzE0MDE3ODR9.22ehcPC7_FFLMKBMIoWxBqXUmPnzxZtqs29cwBSGDhs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pweb-host}}refreshToken/",
+							"host": [
+								"{{pweb-host}}refreshToken"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJBZG1pbmlzdHJhdG9yIn0seyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwidXNlckNvZGUiOiIzIiwiaWF0IjoxNjcxNDM2MjIwLCJleHAiOjE2NzE0MzcxMjB9.sdtrcbqGW-m1kG4JAmQXvso8FiiBtcyxTHYmF4vSlGE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}logout",
+							"host": [
+								"{{pweb-host}}logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJBZG1pbmlzdHJhdG9yIn0seyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwidXNlckNvZGUiOiIzIiwiaWF0IjoxNjcxNTgwNjQ5LCJleHAiOjE2NzE1ODE1NDl9.g7vRQdalghq-eqfosiNMEtL2F7VexGmrLcWXC0TgH1w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}users/all",
+							"host": [
+								"{{pweb-host}}users"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by Code",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqZWFuayIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwidXNlckNvZGUiOiI1IiwiaWF0IjoxNjcxNTY2MzY5LCJleHAiOjE2NzE1NjcyNjl9.BeuOPTsQFnxTd9f8g5cOtbJh2E52RApkU-G8ND9FAQM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}users/3",
+							"host": [
+								"{{pweb-host}}users"
+							],
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "encode all passwords",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJBZG1pbmlzdHJhdG9yIn0seyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwidXNlckNvZGUiOiIzIiwiaWF0IjoxNjcxNDM5MTE4LCJleHAiOjE2NzE0NDAwMTh9.6sHTMzlRCkgke6NQCsQ7WuJBWa2vnsH95XT-Lj4XhLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}users/encodeAll",
+							"host": [
+								"{{pweb-host}}users"
+							],
+							"path": [
+								"encodeAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "roles",
+			"item": [
+				{
+					"name": "get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}roles/all",
+							"host": [
+								"{{pweb-host}}roles"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "contracts",
+			"item": [
+				{
+					"name": "get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsImlhdCI6MTY3MTA4MTAzMywiZXhwIjoxNjcxMTE3MDMzfQ.LsOInMcRTtmt4Y5zTaewFb25EF0f0pbb7khnagCyors",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pweb-host}}contracts/all",
+							"host": [
+								"{{pweb-host}}contracts"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJBZG1pbmlzdHJhdG9yIn0seyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwidXNlckNvZGUiOiIzIiwiaWF0IjoxNjcxNTc1NDkxLCJleHAiOjE2NzE1NzYzOTF9.ewhZGUq9HGQOFztELYBksvI67NRlnhrNoa6b6HoAZeU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "username",
+								"value": "ahmed",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pweb-host}}profile/me",
+							"host": [
+								"{{pweb-host}}profile"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJBZG1pbmlzdHJhdG9yIn0seyJhdXRob3JpdHkiOiJOb3JtYWwgVXNlciJ9XSwidXNlckNvZGUiOiIzIiwiaWF0IjoxNjcxNTc1NDkxLCJleHAiOjE2NzE1NzYzOTF9.ewhZGUq9HGQOFztELYBksvI67NRlnhrNoa6b6HoAZeU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "field",
+								"value": "username",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": 3,\r\n    \"username\": \"ahmecito\",\r\n    \"password\": \"$2a$12$O2zGDj3TejaV6qi8WUlOeOBCfV9lO4PFAihXWATfjvYJ4KQWGpAOK\",\r\n    \"email\": \"ahmediglez@gmail.com\",\r\n    \"recoverCode\": \"17239897\",\r\n    \"firstName\": \"Ahmed Ivan\",\r\n    \"lastName\": \"Gonzalez Betancourt\",\r\n    \"roles\": [\r\n        {\r\n            \"code\": 1,\r\n            \"role\": \"Administrator\",\r\n            \"description\": \"Repository and integration service restart. User creation and deletion. User permission for folders. Folder creation. Software installations. Object migration to higher level environment. Control metrics and estatistics of the system\"\r\n        },\r\n        {\r\n            \"code\": 2,\r\n            \"role\": \"Normal User\",\r\n            \"description\": \"Members who have been granted access to the system's information in order to perform assigned duties or in fulfilment of assigned roles or functions at the organization, for example visualizing data about drivers, cars, or modify some values\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pweb-host}}profile/",
+							"host": [
+								"{{pweb-host}}profile"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "pweb-host",
+			"value": "http://localhost:8095/pwebjsf/api/v1/"
+		}
+	]
+}
