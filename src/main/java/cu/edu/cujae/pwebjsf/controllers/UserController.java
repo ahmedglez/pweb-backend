@@ -1,9 +1,9 @@
 package cu.edu.cujae.pwebjsf.controllers;
 
+import cu.edu.cujae.pwebjsf.services.RoleServices;
 import cu.edu.cujae.pwebjsf.services.UserServices;
 import cu.edu.cujae.pwebjsf.services.dto.UserDto;
-import cu.edu.cujae.pwebjsf.utils.EmailUtils;
-import cu.edu.cujae.pwebjsf.utils.PasswordEncoderUtils;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,8 @@ public class UserController {
   @Autowired
   private UserServices userServices;
 
-  private PasswordEncoderUtils passwordEncoderUtils = new PasswordEncoderUtils();
+  @Autowired
+  private RoleServices roleServices;
 
   @GetMapping("/all")
   public ResponseEntity<List<UserDto>> getAll() {
@@ -41,7 +42,6 @@ public class UserController {
 
   @PostMapping("/")
   public ResponseEntity<UserDto> insert(@RequestBody UserDto user) {
-        user.setPassword(passwordEncoderUtils.encode(user.getPassword()));
     userServices.save(user);
     return new ResponseEntity<>(HttpStatus.OK);
   }
@@ -54,6 +54,9 @@ public class UserController {
 
   @DeleteMapping("/{code}")
   public ResponseEntity<UserDto> delete(@PathVariable("code") int code) {
+    if(userServices.getById(code).containRoleAdministrator()){
+      return ResponseEntity.badRequest().build();
+    }
     userServices.delete(code);
     return new ResponseEntity<>(HttpStatus.OK);
   }
